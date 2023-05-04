@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation, Autoplay } from "swiper";
+import { Navigation } from "swiper";
 
 const Testimonial = () => {
   const swiperRef = useRef();
@@ -46,8 +46,8 @@ const Testimonial = () => {
             swiperRef.current = swiper;
           }}
           speed={1500}
-          modules={[Navigation, Autoplay]}
-          className="mySwiper flex justify-center"
+          modules={[Navigation]}
+          className="mySwiper"
         >
           {testimonials.length > 0 &&
             testimonials.map((item) => (
