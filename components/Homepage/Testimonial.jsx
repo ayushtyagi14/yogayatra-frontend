@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState({});
@@ -34,7 +34,7 @@ const Testimonial = () => {
           We Asked People What They Like <br /> About Our{" "}
           <span className="text-[#f86454]">Yoga and Fitness</span>
         </h1>
-        <Slider
+        {/* <Slider
           dots={true}
           infinite={true}
           speed={500}
@@ -70,7 +70,7 @@ const Testimonial = () => {
                 </div>
               </div>
             ))}
-        </Slider>
+        </Slider> */}
       </div>
     </>
   );
