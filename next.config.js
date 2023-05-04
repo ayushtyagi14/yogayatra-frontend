@@ -20,7 +20,7 @@ const nextConfig = {
     config.resolve.alias['slick-carousel/slick/slick.css'] = 'slick-carousel/slick/slick.css';
 
     return config
-  }
+  },
   exportPathMap: async function (defaultPathMap) {
     delete defaultPathMap['/event/[id]']
     delete defaultPathMap['/events']
