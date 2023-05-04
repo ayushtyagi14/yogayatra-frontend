@@ -1,9 +1,34 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
+import { Swiper, SwiperSlide, SwiperSlideProps } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation, Autoplay } from "swiper";
 
 const Testimonial = () => {
+  const swiperRef = useRef();
 
-  
+  const [testimonials, setTestimonials] = useState({});
+
+  const getTestimonial = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://yogayatra.in/api/admin/getAllTestimonials", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        const data = JSON.parse(result);
+        setTestimonials(data.testimonials);
+      })
+      .catch((error) => console.log("error", error));
+  };
+
+  useEffect(() => {
+    getTestimonial();
+  }, []);
 
   return (
     <>
@@ -12,27 +37,64 @@ const Testimonial = () => {
           We Asked People What They Like <br /> About Our{" "}
           <span className="text-[#f86454]">Yoga and Fitness</span>
         </h1>
-        <div className="bg-white text-black md:h-[400px] mt-40 grid md:grid-cols-2 grid-cols-1 md:relative rounded-lg items-center">
-          <div>
-            <img
-              src="/assets/sakina-vagh.png"
-              alt="testimonial"
-              className="md:absolute md:bottom-0 md:-mt-8 -mt-16"
-              width="480px"
-            />
-          </div>
-          <div className="flex flex-col md:items-start items-center md:text-left text-center">
-            <div className="my-10">
-              <h1 className="text-[24px]">Jacob Jones</h1>
-              <p className="text-[#5c5c5c] my-2">Freelance Product Designer</p>
-              <span>⭐⭐⭐⭐</span>
-            </div>
-            <p className="text-[17px] md:text-left md:mx-0 mx-2">
-              Best part is that you can order food online from your favourite{" "}
-              restaurant with ease. You can get special discounts from
-              restaurants. You can select a range of menu easily.{" "}
-            </p>
-          </div>
+        <Swiper
+          slidesPerView={1}
+          loop={true}
+          spaceBetween={30}
+          centeredSlides={true}
+          onBeforeInit={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          speed={1500}
+          modules={[Navigation, Autoplay]}
+          className="mySwiper flex justify-center"
+        >
+          {testimonials.length > 0 &&
+            testimonials.map((item) => (
+              <SwiperSlide>
+                <div
+                  className="bg-white text-black h-max min-h-[250px] mt-20 grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto"
+                  key={item._id}
+                >
+                  <div className="flex justify-center md:justify-start">
+                    <Image
+                      src={item.testimonialImg}
+                      alt={item.testimonialPersonName}
+                      className="md:ml-20 p-5 h-[300px] object-cover"
+                      width={250}
+                      height={200}
+                    />
+                  </div>
+                  <div className="flex flex-col md:items-start items-center md:text-left text-center">
+                    <div className="my-5">
+                      <h1 className="text-[24px] uppercase">
+                        {item.testimonialPersonName}
+                      </h1>
+                      <p className="text-[#5c5c5c] my-2">
+                        {item.testimonialPersonDesig}
+                      </p>
+                    </div>
+                    <p className="text-[17px] md:text-left md:mx-0 mx-2">
+                      &apos;&apos; {item.testimonialContent} &apos;&apos;
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+        <div className="flex float-right my-5">
+          <button
+            className="border-2 border-r-0 py-4 px-3 rounded-l-lg"
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
+            <img src="https://img.icons8.com/ios-glyphs/20/ffffff/chevron-left.png" />
+          </button>
+          <button
+            className="border-2 border-l-1 py-4 px-3 rounded-r-lg"
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <img src="https://img.icons8.com/ios-glyphs/20/ffffff/chevron-right.png" />
+          </button>
         </div>
       </div>
     </>

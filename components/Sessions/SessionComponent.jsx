@@ -19,7 +19,7 @@ const SessionComponent = ({ props }) => {
                 About this Program:{" "}
               </h1>
               <p className="flex flex-row w-full justify-between">
-                Insturctor:{" "}
+                Instructor:{" "}
                 <span className="text-right">{props.teacherName}</span>
               </p>
               <p className="flex flex-row w-full justify-between">
