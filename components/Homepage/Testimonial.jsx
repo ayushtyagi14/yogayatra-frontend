@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { Swiper, SwiperSlide, SwiperSlideProps } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper";
