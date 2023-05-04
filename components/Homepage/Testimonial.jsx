@@ -1,12 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import SwiperCore, { Swiper, Navigation } from "swiper";
-import { SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-
-SwiperCore.use([Navigation]);
+import { Navigation, Autoplay } from "swiper";
 
 const Testimonial = () => {
   const swiperRef = useRef();

@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
+  experimental: { esmExternals: true },
   exportPathMap: async function (defaultPathMap) {
     delete defaultPathMap['/event/[id]']
     delete defaultPathMap['/events']
