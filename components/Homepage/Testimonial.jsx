@@ -1,14 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Testimonial = () => {
-  const swiperRef = useRef();
-
   const [testimonials, setTestimonials] = useState({});
 
   const getTestimonial = () => {
@@ -37,21 +34,16 @@ const Testimonial = () => {
           We Asked People What They Like <br /> About Our{" "}
           <span className="text-[#f86454]">Yoga and Fitness</span>
         </h1>
-        <Swiper
-          slidesPerView={1}
-          loop={true}
-          spaceBetween={30}
-          centeredSlides={true}
-          onBeforeInit={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          speed={1500}
-          modules={[Navigation]}
-          className="mySwiper"
+        <Slider
+          dots={true}
+          infinite={true}
+          speed={500}
+          slidesToShow={1}
+          slidesToScroll={1}
         >
           {testimonials.length > 0 &&
             testimonials.map((item) => (
-              <SwiperSlide key={item._id}>
+              <div key={item._id}>
                 <div className="bg-white text-black h-max min-h-[250px] mt-20 grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto">
                   <div className="flex justify-center md:justify-start">
                     <Image
@@ -76,23 +68,9 @@ const Testimonial = () => {
                     </p>
                   </div>
                 </div>
-              </SwiperSlide>
+              </div>
             ))}
-        </Swiper>
-        <div className="flex float-right my-5">
-          <button
-            className="border-2 border-r-0 py-4 px-3 rounded-l-lg"
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <img src="https://img.icons8.com/ios-glyphs/20/ffffff/chevron-left.png" />
-          </button>
-          <button
-            className="border-2 border-l-1 py-4 px-3 rounded-r-lg"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <img src="https://img.icons8.com/ios-glyphs/20/ffffff/chevron-right.png" />
-          </button>
-        </div>
+        </Slider>
       </div>
     </>
   );
