@@ -51,11 +51,8 @@ const Testimonial = () => {
         >
           {testimonials.length > 0 &&
             testimonials.map((item) => (
-              <SwiperSlide>
-                <div
-                  className="bg-white text-black h-max min-h-[250px] mt-20 grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto"
-                  key={item._id}
-                >
+              <SwiperSlide key={item._id}>
+                <div className="bg-white text-black h-max min-h-[250px] mt-20 grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto">
                   <div className="flex justify-center md:justify-start">
                     <Image
                       src={item.testimonialImg}
