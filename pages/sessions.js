@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
     };
 
     const response = await fetch(
-        "https://client-project-backend.onrender.com/api/admin/getAllSessions",
+        "https://yogayatra.in/api/admin/getAllSessions",
         requestOptions
     );
 

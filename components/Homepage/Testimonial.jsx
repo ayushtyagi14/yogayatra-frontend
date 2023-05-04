@@ -1,6 +1,10 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 const Testimonial = () => {
+
+  
+
   return (
     <>
       <div className="mx-10 my-40">
@@ -8,48 +12,26 @@ const Testimonial = () => {
           We Asked People What They Like <br /> About Our{" "}
           <span className="text-[#f86454]">Yoga and Fitness</span>
         </h1>
-        <div className="grid md:grid-cols-3 grid-cols-1 mt-10">
-          <div className="flex flex-col items-center text-center rounded shadow md:mx-5 mt-5 md:mt-0 bg-white py-4">
-            <img src="/assets/comma.png" alt="testimonial" width="100px" />
-            <p className="font-poppins">
-              Great company! The staff is so knowledgeable and the classes are
-              very well done. I&apos;m really enjoying it!
-            </p>
-            <img
-              src="/assets/customer-1.webp"
-              alt="yoga-customer"
-              width="60px"
-              className="rounded-full my-5"
-            />
-            <h1 className="text-[20px] text-[#f86454]">Customer Name</h1>
-          </div>
-          <div className="flex flex-col items-center text-center rounded shadow md:mx-5 mt-5 md:mt-0 bg-white py-4">
-            <img src="/assets/comma.png" alt="testimonial" width="100px" />
-            <p className="font-poppins">
-              Great company! The staff is so knowledgeable and the classes are
-              very well done. I&apos;m really enjoying it!
-            </p>
-            <img
-              src="/assets/customer-2.webp"
-              alt="yoga-customer"
-              width="60px"
-              className="rounded-full my-5"
-            />
-            <h1 className="text-[20px] text-[#f86454]">Customer Name</h1>
-          </div>
-          <div className="flex flex-col items-center text-center rounded shadow md:mx-5 mt-5 md:mt-0 bg-white py-4">
-            <img src="/assets/comma.png" alt="testimonial" width="100px" />
-            <p className="font-poppins">
-              Great company! The staff is so knowledgeable and the classes are
-              very well done. I&apos;m really enjoying it!
-            </p>
+        <div className="bg-white text-black md:h-[400px] mt-40 grid md:grid-cols-2 grid-cols-1 md:relative rounded-lg items-center">
+          <div>
             <img
               src="/assets/sakina-vagh.png"
-              alt="yoga-customer"
-              width="60px"
-              className="rounded-full my-5"
+              alt="testimonial"
+              className="md:absolute md:bottom-0 md:-mt-8 -mt-16"
+              width="480px"
             />
-            <h1 className="text-[20px] text-[#f86454]">Customer Name</h1>
+          </div>
+          <div className="flex flex-col md:items-start items-center md:text-left text-center">
+            <div className="my-10">
+              <h1 className="text-[24px]">Jacob Jones</h1>
+              <p className="text-[#5c5c5c] my-2">Freelance Product Designer</p>
+              <span>⭐⭐⭐⭐</span>
+            </div>
+            <p className="text-[17px] md:text-left md:mx-0 mx-2">
+              Best part is that you can order food online from your favourite{" "}
+              restaurant with ease. You can get special discounts from
+              restaurants. You can select a range of menu easily.{" "}
+            </p>
           </div>
         </div>
       </div>

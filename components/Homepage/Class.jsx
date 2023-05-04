@@ -19,7 +19,7 @@ const Class = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-3 grid-cols-1 mt-8">
-          <div className="p-10 md:mx-3 my-5 text-center shadow bg-[#f1f1f1]">
+          <div className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]">
             <h1 className="text-[24px] text-[#f86454]">Beginner Level</h1>
             <p className="font-poppins text-[14px] my-3">
               At our studio, we understand that starting something new can be
@@ -33,7 +33,7 @@ const Class = () => {
               Learn More
             </button>
           </div>
-          <div className="p-10 md:mx-3 my-5 text-center shadow bg-[#f1f1f1]">
+          <div className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]">
             <h1 className="text-[24px] text-[#f86454]">Intermediate Level</h1>
             <p className="font-poppins text-[14px] my-3">
               At our studio, we understand that starting something new can be
@@ -47,7 +47,7 @@ const Class = () => {
               Learn More
             </button>
           </div>
-          <div className="p-10 md:mx-3 my-5 text-center shadow bg-[#f1f1f1]">
+          <div className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]">
             <h1 className="text-[24px] text-[#f86454]">Advanced Level</h1>
             <p className="font-poppins text-[14px] my-3">
               At our studio, we understand that starting something new can be
