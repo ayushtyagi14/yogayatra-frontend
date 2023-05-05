@@ -6,6 +6,7 @@ import Layout from "../components/Layout/Layout";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import MyHead from "../components/MyHead";
 
 const Signup = () => {
     const router = useRouter()
@@ -124,6 +125,7 @@ const Signup = () => {
 
     return (
         <>
+            <MyHead title='Signup | Yogayatra' />
             <div className="w-full bg-[#B4AAA7] shadow z-[999]">
                 <Navbar />
             </div>
@@ -235,7 +237,6 @@ const Signup = () => {
 
             {showModal ? (
                 <>
-                    {console.log(email)}
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-sm">
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">

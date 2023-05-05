@@ -6,7 +6,7 @@ import Hero from '../../components/Sessions/Hero';
 const SingleSession = ({ session }) => {
     return (
         <>
-            <Layout>
+            <Layout title={`${session.sessionName} | Yogayatra`}>
                 <Hero name={session.sessionName} isClass={true} />
                 <SessionComponent props={session} />
             </Layout>

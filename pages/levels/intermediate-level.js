@@ -5,7 +5,7 @@ import Image from 'next/image'
 const IntermediateLevel = () => {
     return (
         <>
-            <Layout>
+            <Layout title='Intermediate Level | Yogayatra'>
                 <div className="relative">
                     <div className="md:h-[75vh] h-[55vh]">
                         <Image

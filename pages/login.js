@@ -4,6 +4,7 @@ import { FaSpinner } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import MyHead from "../components/MyHead";
 
 const Login = () => {
     const router = useRouter()
@@ -78,6 +79,7 @@ const Login = () => {
 
     return (
         <>
+            <MyHead title='Login | Yogayatra' />
             <div className="w-full bg-[#B4AAA7] shadow z-[999]">
                 <Navbar />
             </div>

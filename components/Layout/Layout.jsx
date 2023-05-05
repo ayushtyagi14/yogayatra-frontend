@@ -3,8 +3,10 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import Head from "next/head";
+import MyHead from "../MyHead";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title, description }) => {
   const [colorChange, setColorchange] = useState(false);
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
@@ -21,6 +23,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <MyHead title={title} description={description} />
       {colorChange ? (
         <div className="fixed top-0 w-full bg-[#B4AAA7] shadow z-[999]">
           <Navbar />

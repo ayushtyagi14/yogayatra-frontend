@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -26,6 +27,14 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/assets/icon.png"
+        />
+      </Head>
       <ToastContainer limit={1} toastStyle={{ backgroundColor: "whitesmoke" }} />
       {loading ? <Loader /> : <Component {...pageProps} />}
     </>

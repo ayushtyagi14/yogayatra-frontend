@@ -98,13 +98,13 @@ const Navbar = () => {
                 <Link href="/events" className="md:my-3 my-1 block md:hidden">
                   <div>Events</div>
                 </Link>
-                <Link href="/" className="md:my-3 my-1">
+                <Link href="/instructors" className="md:my-3 my-1">
                   <div>Instructors</div>
                 </Link>
                 <Link href="/guru" className="md:my-3 my-1">
                   <div>Guru</div>
                 </Link>
-                <Link href="/" className="md:my-3 my-1">
+                <Link href="/testimonials" className="md:my-3 my-1">
                   <div>Testimonials</div>
                 </Link>
                 <Link href="/" className="md:my-3 my-1">
@@ -116,7 +116,7 @@ const Navbar = () => {
                 <Link href="/" className="md:my-3 my-1">
                   <div>Gallery</div>
                 </Link>
-                <Link href="/" className="md:my-3 my-1">
+                <Link href="/contact-us" className="md:my-3 my-1">
                   <div>Contact Us</div>
                 </Link>
                 <button

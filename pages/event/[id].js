@@ -6,7 +6,7 @@ import Hero from '../../components/Events/Hero';
 const SingleEvent = ({ event }) => {
     return (
         <>
-            <Layout>
+            <Layout title={`${event.eventName} | Yogayatra`}>
                 <Hero name={event.eventName} isEvent={true} />
                 <EventComponent props={event} />
             </Layout>

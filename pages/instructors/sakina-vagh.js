@@ -1,10 +1,12 @@
 import React from 'react';
 import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
+import MyHead from '../../components/MyHead'
 
 const SakinaVagh = () => {
     return (
         <>
+            <MyHead title='Sakina Vagh | Yogayatra' />
             <div className="w-full bg-[#B4AAA7] shadow z-[999]">
                 <Navbar />
             </div>

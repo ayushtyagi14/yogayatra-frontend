@@ -6,7 +6,7 @@ import EventsComponent from '../components/Events/EventsComponent'
 const Events = ({ events }) => {
     return (
         <>
-            <Layout>
+            <Layout title='Events | Yogayatra'>
                 <Hero name="Events" isEvent={false} />
                 <EventsComponent props={events} />
             </Layout>

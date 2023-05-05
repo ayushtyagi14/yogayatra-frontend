@@ -5,7 +5,7 @@ import SessionsComponent from '../components/Sessions/Sessions';
 const Sessions = ({ sessions }) => {
     return (
         <>
-            <Layout>
+            <Layout title='Sessions | Yogayatra'>
                 <Hero name="Our Classes" isClass={false} />
                 <SessionsComponent props={sessions} />
             </Layout>

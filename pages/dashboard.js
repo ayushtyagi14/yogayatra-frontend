@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useRouter } from 'next/router';
+import MyHead from '../components/MyHead';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('upcoming-classes');
@@ -19,6 +20,7 @@ const Dashboard = () => {
 
     return (
         <>
+            <MyHead title='Your Dashboard | Yogayatra' />
             <div className="w-full bg-[#B4AAA7] shadow z-[999]">
                 <Navbar />
             </div>
