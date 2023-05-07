@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
+  env: {
+    BACKEND: "https://yogayatra.in/api/",
+  },
   exportPathMap: async function (defaultPathMap) {
     delete defaultPathMap['/event/[id]']
     delete defaultPathMap['/events']

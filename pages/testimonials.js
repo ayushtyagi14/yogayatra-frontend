@@ -24,7 +24,7 @@ export const getServerSideProps = async () => {
         redirect: 'follow'
     };
 
-    await fetch("https://yogayatra.in/api/admin/getAllTestimonials", requestOptions)
+    await fetch(process.env.BACKEND + "admin/getAllTestimonials", requestOptions)
         .then((response) => response.text())
         .then((result) => {
             const data = JSON.parse(result);

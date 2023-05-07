@@ -24,7 +24,7 @@ export const getServerSideProps = async () => {
         redirect: 'follow'
     };
 
-    await fetch("https://yogayatra.in/api/admin/getAllEvents", requestOptions)
+    await fetch(process.env.BACKEND + "admin/getAllEvents", requestOptions)
         .then((response) => response.text())
         .then((result) => {
             const data = JSON.parse(result);

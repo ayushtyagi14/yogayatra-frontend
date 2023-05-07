@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
     };
 
     const response = await fetch(
-        "https://yogayatra.in/api/admin/getAllSessions",
+        process.env.BACKEND + "admin/getAllSessions",
         requestOptions
     );
 

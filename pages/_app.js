@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { StateContext } from '../context/StateContext';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -36,7 +37,10 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <ToastContainer limit={1} toastStyle={{ backgroundColor: "whitesmoke" }} />
-      {loading ? <Loader /> : <Component {...pageProps} />}
+      {loading ? <Loader /> :
+        <StateContext>
+          <Component {...pageProps} />
+        </StateContext>}
     </>
   )
 }

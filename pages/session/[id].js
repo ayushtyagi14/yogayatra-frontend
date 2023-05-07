@@ -26,7 +26,7 @@ export const getServerSideProps = async (context) => {
         };
 
         await fetch(
-            "https://yogayatra.in/api/admin/getSingleSession/" + context.params.id,
+            process.env.BACKEND + "admin/getSingleSession/" + context.params.id,
             requestOptions
         )
             .then((response) => response.json())

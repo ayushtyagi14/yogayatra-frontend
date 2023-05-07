@@ -39,7 +39,7 @@ const Login = () => {
             redirect: 'follow'
         };
 
-        fetch("https://yogayatra.in/api/user/login", requestOptions)
+        fetch(process.env.BACKEND + "user/login", requestOptions)
             .then(response => response.text(),)
             .then(result => {
                 const data = JSON.parse(result);

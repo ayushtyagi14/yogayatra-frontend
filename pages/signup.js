@@ -47,7 +47,7 @@ const Signup = () => {
             redirect: 'follow'
         };
 
-        fetch("https://yogayatra.in/api/user/signup", requestOptions)
+        fetch(process.env.BACKEND + "user/signup", requestOptions)
             .then(response => response.text(),)
             .then(result => {
                 const data = JSON.parse(result);
@@ -104,7 +104,7 @@ const Signup = () => {
             redirect: "follow",
         };
 
-        fetch("https://yogayatra.in/api/user/otp", postOptions)
+        fetch(process.env.BACKEND + "user/otp", postOptions)
             .then((response) => {
                 console.log(response.status);
                 if (response.status === 200) {
