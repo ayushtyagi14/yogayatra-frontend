@@ -1,6 +1,8 @@
 import React from "react";
 
 const SessionComponent = ({ props }) => {
+  const formattedSessionDesc = props.sessionDesc.replace(/\n/g, "<br>");
+
   return (
     <>
       <div className=" mt-5 md:mx-10">
@@ -10,9 +12,10 @@ const SessionComponent = ({ props }) => {
               <h1 className="md:text-[30px] text-[19px] text-center md:text-left">
                 What Is <span>{props.sessionName}</span> ?
               </h1>
-              <p className="font-poppins md:w-[80%] w-[95%] mx-auto md:mx-0 md:text-[16px] text-[14px] mt-2 text-center md:text-left">
-                <span>{props.sessionDesc}</span>
-              </p>
+              <p
+                className="font-poppins md:w-[80%] w-[95%] mx-auto md:mx-0 md:text-[16px] text-[14px] mt-2 text-center md:text-left"
+                dangerouslySetInnerHTML={{ __html: formattedSessionDesc }}
+              />
             </div>
             <div className="my-3 md:w-[40%]">
               <h1 className="md:text-[30px] text-[20px] text-center md:text-left mb-2">

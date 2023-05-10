@@ -21,13 +21,10 @@ const SessionsComponent = ({ props }) => {
               {data.sessionName}
             </h1>
             <p className="text-[14px] mt-2 text-center">
-              At out yoga studio, we provide a welcoming and supportive
-              environment for beginners to explore the transformative power of
-              yoga! If you are new to yoga, you may feel intimidated or
-              overwhelmed by the various poses and practices that come with this
-              ancient practice. At our studio, we understand that starting
-              something new can be challenging, and that&apos;s why we offer
-              classes specifically designed for each levels.
+              Welcome to our {data.sessionName} session! Join us for a
+              transformative experience that will invigorate your mind, body,
+              and soul. Register now by clicking the button below and start your
+              journey to a healthier, happier you!
             </p>
             <p className="mt-2 text-center text-[14px]">
               Instructor :{" "}
@@ -36,14 +33,11 @@ const SessionsComponent = ({ props }) => {
               </span>
             </p>
             <p className="text-[20px] text-center my-4">
-              For
-              <span className="font-poppins uppercase mx-2 text-[22px] text-[#f86454]">
-                {data.sessionDuration}
-              </span>
-              days At Just ₹
+              For ₹
               <span className="font-poppins uppercase mx-2 text-[22px] text-[#f86454]">
                 {data.sessionFee}
               </span>
+              Per Month
             </p>
             <button
               className="md:w-[30%] w-[70%] mx-auto border border-[#b4aaa7] bg-[#b4aaa7] text-[#ececec] hover:bg-[#ececec] hover:text-[#b4aaa7] hover:border-[#ececec] px-5 py-1 rounded-xl mt-2"
