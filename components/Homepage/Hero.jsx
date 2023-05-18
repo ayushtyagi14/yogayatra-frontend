@@ -12,11 +12,13 @@ const Hero = () => {
             autoPlay
             muted
             loop
+            playsInline
             className="brightness-[65%] w-full h-full object-cover"
           >
             <source src={"/assets/hero-banner.mp4"} type="video/mp4" />
           </video>
         </div>
+
         <div className="relative text-center">
           <div className="z-[999] md:mt-[-330px] mt-[-360px] text-white md:text-[65px] text-[40px] text-center leading-tight uppercase font-extrabold">
             <p> Welcome To YogaYatra </p>

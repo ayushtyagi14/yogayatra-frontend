@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import DeleteSession from "./DeleteSession";
-import EditSession from "./EditSession";
-import MakeSession from "./MakeSession";
+import DeleteEvent from "./DeleteEvent";
+import EditEvent from "./EditEvent";
+import MakeEvent from "./MakeEvent";
 
 const GetSession = () => {
   const [sessions, setSessions] = useState({});
@@ -38,7 +38,7 @@ const GetSession = () => {
         </div>
       ) : (
         <>
-          <MakeSession getAllSessions={getAllSessions} />
+          <MakeEvent getAllSessions={getAllSessions} />
           <div className="md:mx-10 mx-5 py-8">
             <div className="grid lg:grid-cols-2 grid-cols-1 items-center gap-4">
               {sessions.length > 0 &&
@@ -61,38 +61,22 @@ const GetSession = () => {
                         {data.teacherName}
                       </span>
                     </p>
-                    <div className="flex flex-col items-start md:w-[45%] mx-auto">
-                      <p className="text-[16px] text-center mt-4">
-                        At Rs
-                        <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
-                          {data.sessionPlan1Fee}
-                        </span>
-                        For {data.sessionPlan1Duration} Month
-                      </p>
-                      <p className="text-[16px] text-center">
-                        At Rs
-                        <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
-                          {data.sessionPlan2Fee}
-                        </span>
-                        For {data.sessionPlan2Duration} Months
-                      </p>
-                      <p className="text-[16px] text-center">
-                        At Rs
-                        <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
-                          {data.sessionPlan3Fee}
-                        </span>
-                        For {data.sessionPlan3Duration} Months
-                      </p>
-                    </div>
-                    <div className="flex flex-row items-center w-[40%] mx-auto justify-between mt-5">
-                      <span className="px-2 py-1 rounded-lg shadow">
-                        <EditSession
+                    <p className="text-[20px] text-center my-4">
+                      For ₹
+                      <span className="font-poppins uppercase mx-2 text-[22px] text-[#f86454]">
+                        {data.sessionFee}
+                      </span>
+                      Per Month
+                    </p>
+                    <div className="flex flex-row items-center w-[40%] mx-auto justify-between">
+                      <span>
+                        <EditEvent
                           sessionId={data.sessionId}
                           getAllSessions={getAllSessions}
                         />
                       </span>
-                      <span className="px-2 py-1 rounded-lg shadow">
-                        <DeleteSession
+                      <span>
+                        <DeleteEvent
                           sessionId={data.sessionId}
                           getAllSessions={getAllSessions}
                         />

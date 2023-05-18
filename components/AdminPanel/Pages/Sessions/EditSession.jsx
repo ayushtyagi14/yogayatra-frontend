@@ -1,13 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const EditSession = ({ sessionId, getAllSessions }) => {
   const [showModal, setShowModal] = useState(false);
 
-  const [sessionData, setSessionData] = useState({});
-
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [sessionName, setSessionName] = useState("");
   const [sessionDescription, setSessionDescription] = useState("");
   const [sessionFee, setSessionFee] = useState("");
@@ -16,7 +15,6 @@ const EditSession = ({ sessionId, getAllSessions }) => {
   const [sessionEndTime, setSessionEndTime] = useState("");
 
   function handleChange(event) {
-    setImage("");
     const file = event.target.files[0];
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
@@ -40,7 +38,6 @@ const EditSession = ({ sessionId, getAllSessions }) => {
       .then((response) => response.json())
       .then((result) => {
         console.log(result.session);
-        setSessionData(result.session);
         setImage(result.session.sessionImg);
         setSessionName(result.session.sessionName);
         setSessionDescription(result.session.sessionDesc);
@@ -54,53 +51,60 @@ const EditSession = ({ sessionId, getAllSessions }) => {
       .catch((error) => console.log("error", error));
   };
 
-  function handleSubmit(event) {
-    setLoading(true);
+  const handleSubmit = (event) => {
+    console.log(image);
     event.preventDefault();
+    setLoading(true);
     const sessionTime = `${sessionStartTime} to ${sessionEndTime}`;
+    let payload = {
+      sessionName: sessionName,
+      sessionDesc: sessionDescription,
+      sessionFee: sessionFee,
+      teacherName: teacherName,
+      sessionTime: sessionTime,
+    };
 
-    if (image) {
-      const formData = new FormData();
-      formData.append("myFile", dataURItoBlob(image));
-      formData.append("sessionName", sessionName);
-      formData.append("sessionDesc", sessionDescription);
-      formData.append("sessionFee", sessionFee);
-      formData.append("teacherName", teacherName);
-      formData.append("sessionTime", sessionTime);
-
-      var requestOptions = {
-        method: "PATCH",
-        body: formData,
-        redirect: "follow",
-      };
-
-      fetch(
-        process.env.BACKEND + "admin/editSession" + sessionId,
-        requestOptions
-      )
-        .then((response) => response.text())
-        .then((result) => {
-          const data = JSON.parse(result);
-          setLoading(false);
-          if (data.resCode === 200) {
-            toast.success(`${data.message}`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 1500,
-            });
-            setShowModal(false);
-          } else {
-            toast.error(`${data.message}`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 1500,
-            });
-          }
-        })
-        .catch((error) => console.log("error", error));
+    if (handleChange) {
+      payload.myFile = dataURItoBlob(image);
     }
-  }
+
+    var requestOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+      redirect: "follow",
+    };
+
+    fetch(
+      process.env.BACKEND + "admin/editSession/" + sessionId,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => {
+        const data = JSON.parse(result);
+        setLoading(false);
+        console.log(data);
+        if (data.resCode === 200) {
+          toast.success(`${data.message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+          setShowModal(false);
+          getAllSessions();
+        } else {
+          toast.error(`${data.message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   function dataURItoBlob(dataURI) {
-    const byteString = atob(dataURI.split(",")[1]);
+    const byteString = Buffer(dataURI.split(",")[1]);
     const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
@@ -158,7 +162,6 @@ const EditSession = ({ sessionId, getAllSessions }) => {
                       name="image"
                       accept="image/*"
                       onChange={handleChange}
-                      required
                       className="py-1 px-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2 w-full"
                     />
                   </div>

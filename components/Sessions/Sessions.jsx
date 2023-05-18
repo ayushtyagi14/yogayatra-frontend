@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 const SessionsComponent = ({ props }) => {
+  console.log(props);
   const router = useRouter();
 
   return (
@@ -10,7 +11,7 @@ const SessionsComponent = ({ props }) => {
         {props?.map((data) => (
           <div
             key={data._id}
-            className="flex flex-col md:w-full md:mx-5 mt-5 md:px-10 py-3 shadow"
+            className="flex flex-col md:w-full md:mx-5 mt-5 md:px-10 px-2 py-3 shadow"
           >
             <img
               src={data.sessionImg}
@@ -32,13 +33,29 @@ const SessionsComponent = ({ props }) => {
                 {data.teacherName}
               </span>
             </p>
-            <p className="text-[20px] text-center my-4">
-              For ₹
-              <span className="font-poppins uppercase mx-2 text-[22px] text-[#f86454]">
-                {data.sessionFee}
-              </span>
-              Per Month
-            </p>
+            <div className="flex flex-col items-start md:w-[45%] mx-auto">
+              <p className="text-[16px] text-center mt-4">
+                At Rs
+                <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
+                  {data.sessionPlan1Fee}
+                </span>
+                For {data.sessionPlan1Duration} Month
+              </p>
+              <p className="text-[16px] text-center">
+                At Rs
+                <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
+                  {data.sessionPlan2Fee}
+                </span>
+                For {data.sessionPlan2Duration} Months
+              </p>
+              <p className="text-[16px] text-center">
+                At Rs
+                <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
+                  {data.sessionPlan3Fee}
+                </span>
+                For {data.sessionPlan3Duration} Months
+              </p>
+            </div>
             <button
               className="md:w-[30%] w-[70%] mx-auto border border-[#b4aaa7] bg-[#b4aaa7] text-[#ececec] hover:bg-[#ececec] hover:text-[#b4aaa7] hover:border-[#ececec] px-5 py-1 rounded-xl mt-2"
               onClick={() => {

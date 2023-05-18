@@ -1,10 +1,11 @@
 import React from 'react'
+import GetEvents from './GetEvents'
 
 const Events = () => {
   return (
-    <div>
-      Events
-    </div>
+    <>
+      <GetEvents />
+    </>
   )
 }
 
