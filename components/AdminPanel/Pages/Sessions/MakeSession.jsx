@@ -53,6 +53,8 @@ const MakeSession = ({ getAllSessions }) => {
         setImage(reader.result);
       };
       reader.readAsDataURL(file);
+    } else {
+      alert("Please select an image file.");
     }
   }
 
@@ -61,51 +63,68 @@ const MakeSession = ({ getAllSessions }) => {
     event.preventDefault();
     const sessionTime = `${sessionStartTime} to ${sessionEndTime}`;
 
-    if (image) {
-      const formData = new FormData();
-      formData.append("myFile", dataURItoBlob(image));
-      formData.append("sessionName", sessionName);
-      formData.append("sessionDesc", sessionDescription);
-      formData.append("teacherName", teacherName);
-      formData.append("sessionTime", sessionTime);
-      formData.append("sessionPlan1Fee", sessionPlan1Fee);
-      formData.append("sessionPlan1Duration", sessionPlan1Duration);
-      formData.append("sessionPlan2Fee", sessionPlan2Fee);
-      formData.append("sessionPlan2Duration", sessionPlan2Duration);
-      formData.append("sessionPlan3Fee", sessionPlan3Fee);
-      formData.append("sessionPlan3Duration", sessionPlan3Duration);
-
-      var requestOptions = {
-        method: "POST",
-        body: formData,
-        redirect: "follow",
-      };
-
-      fetch(process.env.BACKEND + "admin/makeSession", requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-          const data = JSON.parse(result);
-          setLoading(false);
-          if (data.resCode === 200) {
-            toast.success(`${data.message}`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 1500,
-            });
-            getAllSessions();
-            setShowModal(false);
-          } else {
-            toast.error(`${data.message}`, {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 1500,
-            });
-          }
-        })
-        .catch((error) => console.log("error", error));
+    if (image === null) {
+      alert("Please select an image.");
+      return;
     }
+
+    if (sessionName.trim() === "") {
+      alert("Please enter a session name.");
+      return;
+    }
+
+    if (sessionDescription.trim() === "") {
+      alert("Please enter a session description.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("myFile", image);
+    formData.append("sessionName", sessionName);
+    formData.append("sessionDesc", sessionDescription);
+    formData.append("teacherName", teacherName);
+    formData.append("sessionTime", sessionTime);
+    formData.append("sessionPlan1Fee", sessionPlan1Fee);
+    formData.append("sessionPlan1Duration", sessionPlan1Duration);
+    formData.append("sessionPlan2Fee", sessionPlan2Fee);
+    formData.append("sessionPlan2Duration", sessionPlan2Duration);
+    formData.append("sessionPlan3Fee", sessionPlan3Fee);
+    formData.append("sessionPlan3Duration", sessionPlan3Duration);
+
+    var requestOptions = {
+      method: "POST",
+      body: formData,
+      redirect: "follow",
+    };
+
+    fetch(process.env.BACKEND + "admin/makeSession", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        const data = JSON.parse(result);
+        setLoading(false);
+        if (data.resCode === 200) {
+          toast.success(`${data.message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+          getAllSessions();
+          setShowModal(false);
+        } else {
+          toast.error(`${data.message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+        }
+      })
+      .catch((error) => console.log("error", error));
   }
 
   function dataURItoBlob(dataURI) {
-    const byteString = atob(dataURI.split(",")[1]);
+    if (dataURI === "") {
+      throw new Error("Invalid dataURI string");
+    }
+
+    const byteString = Buffer.from(dataURI.split(",")[1], "base64");
     const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
@@ -284,15 +303,15 @@ const MakeSession = ({ getAllSessions }) => {
                         <option value="1">1 Month</option>
                         <option value="2">2 Months</option>
                         <option value="3">3 Months</option>
-                        <option value="3">4 Months</option>
-                        <option value="3">5 Months</option>
-                        <option value="3">6 Months</option>
-                        <option value="3">7 Months</option>
-                        <option value="3">8 Months</option>
-                        <option value="3">9 Months</option>
-                        <option value="3">10 Months</option>
-                        <option value="3">11 Months</option>
-                        <option value="3">12 Months</option>
+                        <option value="4">4 Months</option>
+                        <option value="5">5 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="7">7 Months</option>
+                        <option value="8">8 Months</option>
+                        <option value="9">9 Months</option>
+                        <option value="10">10 Months</option>
+                        <option value="11">11 Months</option>
+                        <option value="12">12 Months</option>
                       </select>
                     </div>
                   </div>
@@ -327,15 +346,15 @@ const MakeSession = ({ getAllSessions }) => {
                         <option value="1">1 Month</option>
                         <option value="2">2 Months</option>
                         <option value="3">3 Months</option>
-                        <option value="3">4 Months</option>
-                        <option value="3">5 Months</option>
-                        <option value="3">6 Months</option>
-                        <option value="3">7 Months</option>
-                        <option value="3">8 Months</option>
-                        <option value="3">9 Months</option>
-                        <option value="3">10 Months</option>
-                        <option value="3">11 Months</option>
-                        <option value="3">12 Months</option>
+                        <option value="4">4 Months</option>
+                        <option value="5">5 Months</option>
+                        <option value="6">6 Months</option>
+                        <option value="7">7 Months</option>
+                        <option value="8">8 Months</option>
+                        <option value="9">9 Months</option>
+                        <option value="10">10 Months</option>
+                        <option value="11">11 Months</option>
+                        <option value="12">12 Months</option>
                       </select>
                     </div>
                   </div>

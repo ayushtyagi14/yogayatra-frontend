@@ -3,7 +3,7 @@ import React from 'react'
 const DeleteEvent = () => {
   return (
     <div>
-      Delete Event
+      Delete 
     </div>
   )
 }
