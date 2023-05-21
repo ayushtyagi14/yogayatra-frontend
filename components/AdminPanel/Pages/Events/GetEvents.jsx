@@ -45,36 +45,52 @@ const GetEvents = () => {
                 events.map((data) => (
                   <div
                     key={data._id}
-                    className="flex flex-col md:w-full md:mx-5 mt-5 md:px-10 py-3 shadow"
+                    className="flex flex-col md:mx-5 mt-5 md:px-10 py-3 shadow-lg rounded-lg bg-white"
                   >
-                    <img
-                      src={data.eventImg}
-                      alt={data.eventName}
-                      className="md:w-[50%] w-[80%] rounded-xl h-48 object-cover object-center mx-auto"
-                    />
-                    <h1 className="md:text-[28px] text-center">
-                      {data.eventName}
-                    </h1>
-                    <p className="mt-2 text-center text-[14px]">
-                      Instructor :
-                      <span className="font-poppins uppercase ml-1 text-[18px] text-[#f86454]">
-                        {data.teacherName}
-                      </span>
-                    </p>
-                    <div className="flex flex-col items-center mx-auto">
-                      <p className="text-[16px] text-center mt-4">
-                        At Just Rs
-                        <span className="font-poppins uppercase mx-2 text-[20px] text-[#f86454]">
-                          {data.eventFee}
+                    <div className="relative overflow-hidden rounded-t-lg">
+                      <img
+                        src={data.eventImg}
+                        alt={data.eventName}
+                        className="w-full h-64 object-cover object-center"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-50"></div>
+                    </div>
+                    <div className="p-6">
+                      <h1 className="text-2xl font-poppins mt-2 text-center text-gray-800">
+                        {data.eventName}
+                      </h1>
+                      <p className="mt-4 text-center">
+                        Instructor:{" "}
+                        <span className="font-poppins uppercase ml-1 text-lg text-[#f86454]">
+                          {data.teacherName}
                         </span>
                       </p>
-                      <p className="text-[16px] text-center">
-                        <span className="font-poppins uppercase">
-                          {data.eventTime}
-                        </span>
+                      <div className="flex justify-center mt-6">
+                        <div className="flex items-center mr-6">
+                          <img
+                            width="20"
+                            height="20"
+                            src="https://img.icons8.com/stickers/20/calendar.png"
+                            alt="calendar"
+                          />
+                          <span className="text-sm font-poppins uppercase">
+                            <b>{data.eventDate}</b>
+                          </span>
+                        </div>
+                        <div className="flex items-center">
+                          <span className="text-sm font-poppins uppercase">
+                            At Just Rs
+                            <b className="text-lg ml-2 text-[#f86454]">
+                              {data.eventFee}
+                            </b>
+                          </span>
+                        </div>
+                      </div>
+                      <p className="text-xl text-center mt-6">
+                        <span className="font-poppins">{data.eventTime}</span>
                       </p>
                     </div>
-                    <div className="flex flex-row items-center w-[40%] mx-auto justify-between mt-5">
+                    <div className="flex flex-row items-center w-[40%] mx-auto justify-between">
                       <span className="px-2 py-1 rounded-lg shadow">
                         <EditEvent
                           eventId={data.eventId}

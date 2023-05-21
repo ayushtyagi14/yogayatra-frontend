@@ -35,10 +35,6 @@ const SessionComponent = ({ props }) => {
               <p className="flex flex-row w-full justify-between">
                 Timings: <span className="text-right">{props.sessionTime}</span>
               </p>
-              <p className="flex flex-row w-full justify-between">
-                Duration of Program:{" "}
-                <span className="text-right">{props.sessionDuration} days</span>
-              </p>
             </div>
           </div>
           <div className="flex flex-col md:w-[30%] w-[90%] md:mt-auto mt-3 md:mx-0 mx-auto md:h-[40%] my-auto justify-center md:px-10 px-4 py-2 shadow-lg rounded-lg bg-[#f6f6f6]">

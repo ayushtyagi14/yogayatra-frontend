@@ -1,50 +1,41 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const MakeSession = ({ getAllSessions }) => {
   const [showModal, setShowModal] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [sessionName, setSessionName] = useState("");
   const [sessionDescription, setSessionDescription] = useState("");
-  const [sessionFee, setSessionFee] = useState("");
   const [teacherName, setTeacherName] = useState("");
   const [sessionStartTime, setSessionStartTime] = useState("");
   const [sessionEndTime, setSessionEndTime] = useState("");
-
   const [sessionPlan1Fee, setSessionPlan1Fee] = useState("");
   const [sessionPlan1Duration, setSessionPlan1Duration] = useState("");
   const [sessionPlan2Fee, setSessionPlan2Fee] = useState("");
   const [sessionPlan2Duration, setSessionPlan2Duration] = useState("");
   const [sessionPlan3Fee, setSessionPlan3Fee] = useState("");
   const [sessionPlan3Duration, setSessionPlan3Duration] = useState("");
-
   const handlePlan1FeeChange = (event) => {
     setSessionPlan1Fee(event.target.value);
   };
-
   const handlePlan1DurationChange = (event) => {
     setSessionPlan1Duration(event.target.value);
   };
-
   const handlePlan2FeeChange = (event) => {
     setSessionPlan2Fee(event.target.value);
   };
-
   const handlePlan2DurationChange = (event) => {
     setSessionPlan2Duration(event.target.value);
   };
-
   const handlePlan3FeeChange = (event) => {
     setSessionPlan3Fee(event.target.value);
   };
-
   const handlePlan3DurationChange = (event) => {
     setSessionPlan3Duration(event.target.value);
   };
-
   function handleChange(event) {
     const file = event.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -53,78 +44,62 @@ const MakeSession = ({ getAllSessions }) => {
         setImage(reader.result);
       };
       reader.readAsDataURL(file);
-    } else {
-      alert("Please select an image file.");
     }
   }
 
   function handleSubmit(event) {
     setLoading(true);
     event.preventDefault();
-    const sessionTime = `${sessionStartTime} to ${sessionEndTime}`;
 
-    if (image === null) {
-      alert("Please select an image.");
-      return;
+    const sessionTime = `${moment(sessionStartTime, "HH:mm").format(
+      "hh:mm A"
+    )} to ${moment(sessionEndTime, "HH:mm").format("hh:mm A")}`;
+
+    if (image) {
+      const formData = new FormData();
+      formData.append("myFile", dataURItoBlob(image));
+      formData.append("sessionName", sessionName);
+      formData.append("sessionDesc", sessionDescription);
+      formData.append("teacherName", teacherName);
+      formData.append("sessionTime", sessionTime);
+      formData.append("sessionPlan1Fee", sessionPlan1Fee);
+      formData.append("sessionPlan1Duration", sessionPlan1Duration);
+      formData.append("sessionPlan2Fee", sessionPlan2Fee);
+      formData.append("sessionPlan2Duration", sessionPlan2Duration);
+      formData.append("sessionPlan3Fee", sessionPlan3Fee);
+      formData.append("sessionPlan3Duration", sessionPlan3Duration);
+
+      var requestOptions = {
+        method: "POST",
+        body: formData,
+        redirect: "follow",
+      };
+
+      fetch(process.env.BACKEND + "admin/makeSession", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          const data = JSON.parse(result);
+          setLoading(false);
+          if (data.resCode === 200) {
+            toast.success(`${data.message}`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1500,
+            });
+            getAllSessions();
+            setShowModal(false);
+          } else {
+            toast.error(`${data.message}`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1500,
+            });
+          }
+        })
+        .catch((error) => console.log("error", error));
     }
-
-    if (sessionName.trim() === "") {
-      alert("Please enter a session name.");
-      return;
-    }
-
-    if (sessionDescription.trim() === "") {
-      alert("Please enter a session description.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("myFile", image);
-    formData.append("sessionName", sessionName);
-    formData.append("sessionDesc", sessionDescription);
-    formData.append("teacherName", teacherName);
-    formData.append("sessionTime", sessionTime);
-    formData.append("sessionPlan1Fee", sessionPlan1Fee);
-    formData.append("sessionPlan1Duration", sessionPlan1Duration);
-    formData.append("sessionPlan2Fee", sessionPlan2Fee);
-    formData.append("sessionPlan2Duration", sessionPlan2Duration);
-    formData.append("sessionPlan3Fee", sessionPlan3Fee);
-    formData.append("sessionPlan3Duration", sessionPlan3Duration);
-
-    var requestOptions = {
-      method: "POST",
-      body: formData,
-      redirect: "follow",
-    };
-
-    fetch(process.env.BACKEND + "admin/makeSession", requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        const data = JSON.parse(result);
-        setLoading(false);
-        if (data.resCode === 200) {
-          toast.success(`${data.message}`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500,
-          });
-          getAllSessions();
-          setShowModal(false);
-        } else {
-          toast.error(`${data.message}`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500,
-          });
-        }
-      })
-      .catch((error) => console.log("error", error));
   }
 
   function dataURItoBlob(dataURI) {
-    if (dataURI === "") {
-      throw new Error("Invalid dataURI string");
-    }
-
-    const byteString = Buffer.from(dataURI.split(",")[1], "base64");
+    const byteString = atob(dataURI.split(",")[1]);
     const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
     const ab = new ArrayBuffer(byteString.length);
     const ia = new Uint8Array(ab);
@@ -145,7 +120,6 @@ const MakeSession = ({ getAllSessions }) => {
           <span className="font-medium">Make a Session</span>
         </button>
       </div>
-
       {showModal ? (
         <>
           <form
@@ -165,7 +139,6 @@ const MakeSession = ({ getAllSessions }) => {
                     x
                   </button>
                 </div>
-
                 <div className="flex flex-col items-center flex-wrap mt-4">
                   {image && (
                     <img
@@ -188,7 +161,6 @@ const MakeSession = ({ getAllSessions }) => {
                     />
                   </div>
                 </div>
-
                 <div className="flex flex-col items-center mt-4 w-full">
                   <label htmlFor="session-name">Name:</label>
                   <input
@@ -201,7 +173,6 @@ const MakeSession = ({ getAllSessions }) => {
                     required
                   />
                 </div>
-
                 <div className="flex flex-col items-center mt-4 w-full">
                   <label htmlFor="session-description">Description:</label>
                   <textarea
@@ -215,7 +186,6 @@ const MakeSession = ({ getAllSessions }) => {
                     required
                   />
                 </div>
-
                 <div className="flex flex-col items-center mt-4 w-full">
                   <label htmlFor="teacher-name">Teacher Name:</label>
                   <input
@@ -228,7 +198,6 @@ const MakeSession = ({ getAllSessions }) => {
                     required
                   />
                 </div>
-
                 <div className="flex flex-col mt-4 w-full">
                   <div>
                     <div className="flex flex-col items-center w-full">
@@ -272,7 +241,6 @@ const MakeSession = ({ getAllSessions }) => {
                       </select>
                     </div>
                   </div>
-
                   <div>
                     <div className="flex flex-col items-center w-full">
                       <label htmlFor="session-plan1-fee">Plan 2 Fee:</label>
@@ -315,7 +283,6 @@ const MakeSession = ({ getAllSessions }) => {
                       </select>
                     </div>
                   </div>
-
                   <div>
                     <div className="flex flex-col items-center w-full">
                       <label htmlFor="session-plan1-fee">Plan 3 Fee:</label>
@@ -359,7 +326,6 @@ const MakeSession = ({ getAllSessions }) => {
                     </div>
                   </div>
                 </div>
-
                 <div className="flex flex-col items-center mt-4 w-full">
                   <label htmlFor="session-start-time">Start Time:</label>
                   <input
@@ -367,9 +333,10 @@ const MakeSession = ({ getAllSessions }) => {
                     id="session-start-time"
                     name="sessionStartTime"
                     value={sessionStartTime}
-                    onChange={(event) =>
-                      setSessionStartTime(event.target.value)
-                    }
+                    onChange={(event) => {
+                      setSessionStartTime(event.target.value),
+                        console.log(sessionStartTime);
+                    }}
                     className="py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                     required
                   />
@@ -382,7 +349,10 @@ const MakeSession = ({ getAllSessions }) => {
                     id="session-end-time"
                     name="sessionEndTime"
                     value={sessionEndTime}
-                    onChange={(event) => setSessionEndTime(event.target.value)}
+                    onChange={(event) => {
+                      setSessionEndTime(event.target.value),
+                        console.log(sessionEndTime);
+                    }}
                     className="py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                     required
                   />
@@ -409,5 +379,4 @@ const MakeSession = ({ getAllSessions }) => {
     </>
   );
 };
-
 export default MakeSession;

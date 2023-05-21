@@ -1,6 +1,8 @@
 import React from "react";
 
 const EventComponent = ({ props }) => {
+  const formattedSessionDesc = props.eventDesc.replace(/\n/g, "<br>");
+
   return (
     <>
       <div className=" mt-5 md:mx-10">
@@ -10,9 +12,10 @@ const EventComponent = ({ props }) => {
               <h1 className="md:text-[30px] text-[19px] text-center md:text-left">
                 What Is <span>{props.eventName}</span> ?
               </h1>
-              <p className="font-poppins md:w-[80%] w-[95%] mx-auto md:mx-0 md:text-[16px] text-[14px] mt-2 text-center md:text-left">
-                <span>{props.eventDesc}</span>
-              </p>
+              <p
+                className="font-poppins md:w-[80%] w-[95%] mx-auto md:mx-0 md:text-[16px] text-[14px] mt-2 text-center md:text-left"
+                dangerouslySetInnerHTML={{ __html: formattedSessionDesc }}
+              />
             </div>
             <div className="my-3 md:w-[40%]">
               <h1 className="md:text-[30px] text-[20px] text-center md:text-left mb-2">
@@ -27,7 +30,7 @@ const EventComponent = ({ props }) => {
               </p>
               <p className="flex flex-row w-full justify-between">
                 Duration of Program:{" "}
-                <span className="text-right">{props.eventDuration}</span>
+                <span className="text-right">{props.eventDuration} Hour</span>
               </p>
             </div>
           </div>
@@ -38,7 +41,7 @@ const EventComponent = ({ props }) => {
             </p>
             <p>
               Duration Of Event:{" "}
-              <span className="font-poppins">{props.eventDuration} </span>
+              <span className="font-poppins">{props.eventDuration} Hour</span>
             </p>
             <button className="rounded-lg py-2 bg-[#f86454] text-white w-[80%] mx-auto mt-4 border">
               Book This Event

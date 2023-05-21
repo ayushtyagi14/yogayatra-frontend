@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const EditSession = ({ sessionId, getAllSessions }) => {
   const [showModal, setShowModal] = useState(false);
@@ -66,7 +67,11 @@ const EditSession = ({ sessionId, getAllSessions }) => {
     console.log(image);
     event.preventDefault();
     setLoading(true);
-    const sessionTime = `${sessionStartTime} to ${sessionEndTime}`;
+
+    const sessionTime = `${moment(sessionStartTime, "HH:mm").format(
+      "hh:mm A"
+    )} to ${moment(sessionEndTime, "HH:mm").format("hh:mm A")}`;
+
     let payload = {
       sessionName: sessionName,
       sessionDesc: sessionDescription,

@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import moment from "moment";
 
-const MakeEvent = ({ getAllEvents, eventId }) => {
+const MakeEvent = ({ getAllEvents }) => {
   const [showModal, setShowModal] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -25,68 +26,66 @@ const MakeEvent = ({ getAllEvents, eventId }) => {
         setImage(reader.result);
       };
       reader.readAsDataURL(file);
-    } else {
-      alert("Please select an image file.");
     }
   }
 
   function handleSubmit(event) {
     setLoading(true);
     event.preventDefault();
-    const eventTime = `${eventStartTime} to ${eventEndTime}`;
 
-    if (image === null) {
-      alert("Please select an image.");
-      return;
-    }
+    const eventTime = `${moment(eventStartTime, "HH:mm").format(
+      "hh:mm A"
+    )} to ${moment(eventEndTime, "HH:mm").format("hh:mm A")}`;
 
-    if (eventName.trim() === "") {
-      alert("Please enter a event name.");
-      return;
-    }
+    if (image) {
+      const formData = new FormData();
+      formData.append("myFile", dataURItoBlob(image));
+      formData.append("eventName", eventName);
+      formData.append("eventDesc", eventDescription);
+      formData.append("teacherName", teacherName);
+      formData.append("eventTime", eventTime);
+      formData.append("eventFee", eventFee);
+      formData.append("eventDuration", eventDuration);
+      formData.append("eventDate", eventDate);
 
-    if (eventDescription.trim() === "") {
-      alert("Please enter a event description.");
-      return;
-    }
+      var requestOptions = {
+        method: "POST",
+        body: formData,
+        redirect: "follow",
+      };
 
-    const formData = new FormData();
-    formData.append("myFile", image);
-    formData.append("eventName", eventName);
-    formData.append("eventDesc", eventDescription);
-    formData.append("teacherName", teacherName);
-    formData.append("eventTime", eventTime);
-    formData.append("eventFee", eventFee);
-    formData.append("eventDuration", eventDuration);
-    formData.append("eventDate", eventDate);
-
-    var requestOptions = {
-      method: "POST",
-      body: formData,
-      redirect: "follow",
-    };
-
-    fetch(process.env.BACKEND + "admin/makeEvent", requestOptions)
-      .then((response) => response.text())
-      .then((result) => {
-        const data = JSON.parse(result);
-        setLoading(false);
-        if (data.resCode === 200) {
-          toast.success(`${data.message}`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500,
-          });
-          getAllEvents();
-          setShowModal(false);
-        } else {
-          toast.error(`${data.message}`, {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500,
-          });
+      fetch(process.env.BACKEND + "admin/makeEvent", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          const data = JSON.parse(result);
           setLoading(false);
-        }
-      })
-      .catch((error) => console.log("error", error));
+          if (data.resCode === 200) {
+            toast.success(`${data.message}`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1500,
+            });
+            getAllEvents();
+            setShowModal(false);
+          } else {
+            toast.error(`${data.message}`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 1500,
+            });
+          }
+        })
+        .catch((error) => console.log("error", error));
+    }
+  }
+
+  function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(",")[1]);
+    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
   }
 
   return (
