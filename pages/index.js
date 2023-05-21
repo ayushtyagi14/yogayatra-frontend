@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Hero from '../components/Homepage/Hero';
 import Layout from '../components/Layout/Layout';
 import WhyYoga from '../components/Homepage/WhyYoga';
@@ -6,6 +5,7 @@ import Training from '../components/Homepage/Training';
 import Class from '../components/Homepage/Class';
 import Team from '../components/Homepage/Team';
 import Testimonial from '../components/Homepage/Testimonial';
+import Founders from '../components/Homepage/Founders';
 
 
 export default function Home() {
@@ -20,6 +20,7 @@ export default function Home() {
       <Training />
       <Class />
       <Team />
+      <Founders />
       <Testimonial />
     </Layout>
   )

@@ -1,5 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { staggerContainer, fadeIn } from "../../utils/motion";
+import { motion } from "framer-motion";
 
 const Class = () => {
   const router = useRouter();
@@ -18,8 +20,17 @@ const Class = () => {
             most porsonalized fitness experience possible.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 grid-cols-1 mt-8">
-          <div className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]">
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.25 }}
+          className="grid md:grid-cols-3 grid-cols-1 mt-8"
+        >
+          <motion.div
+            variants={fadeIn("up", "tween", 0.2, 1)}
+            className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]"
+          >
             <h1 className="text-[24px] text-[#f86454]">Beginner Level</h1>
             <p className="font-poppins text-[14px] my-3">
               At our studio, we understand that starting something new can be
@@ -32,8 +43,11 @@ const Class = () => {
             >
               Learn More
             </button>
-          </div>
-          <div className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]">
+          </motion.div>
+          <motion.div
+            variants={fadeIn("up", "tween", 0.2, 1)}
+            className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]"
+          >
             <h1 className="text-[24px] text-[#f86454]">Intermediate Level</h1>
             <p className="font-poppins text-[14px] my-3">
               At our studio, we understand that starting something new can be
@@ -46,8 +60,11 @@ const Class = () => {
             >
               Learn More
             </button>
-          </div>
-          <div className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]">
+          </motion.div>
+          <motion.div
+            variants={fadeIn("up", "tween", 0.2, 1)}
+            className="p-10 md:mx-3 my-5 text-center shadow rounded-lg bg-[#f1f1f1]"
+          >
             <h1 className="text-[24px] text-[#f86454]">Advanced Level</h1>
             <p className="font-poppins text-[14px] my-3">
               At our studio, we understand that starting something new can be
@@ -60,8 +77,8 @@ const Class = () => {
             >
               Learn More
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.section>
       </div>
     </>
   );

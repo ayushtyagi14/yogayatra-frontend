@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { staggerContainer, fadeIn } from "../../utils/motion";
+import { motion } from "framer-motion";
 
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState({});
@@ -43,8 +45,17 @@ const Testimonial = () => {
         >
           {testimonials.length > 0 &&
             testimonials.map((item) => (
-              <div key={item._id}>
-                <div className="bg-white text-black h-max min-h-[250px] mt-20 grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto md:pb-0 pb-5">
+              <motion.section
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.25 }}
+                key={item._id}
+              >
+                <motion.div
+                  variants={fadeIn("up", "tween", 0.2, 1)}
+                  className="bg-white text-black h-max min-h-[250px] mt-20 grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto md:pb-0 pb-5"
+                >
                   <div className="flex justify-center md:justify-start">
                     <Image
                       src={item.testimonialImg}
@@ -67,8 +78,8 @@ const Testimonial = () => {
                       &apos;&apos; {item.testimonialContent} &apos;&apos;
                     </p>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.section>
             ))}
         </Slider>
       </div>

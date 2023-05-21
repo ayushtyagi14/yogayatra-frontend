@@ -40,6 +40,7 @@ const Layout = ({ children, title, description }) => {
           exit={{ y: -50, opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           id="page-transition-container"
+          className="overflow-hidden"
         >
           {children}
         </motion.div>

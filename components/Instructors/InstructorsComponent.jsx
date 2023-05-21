@@ -1,6 +1,9 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 const InstructorsComponent = () => {
+  const router = useRouter();
+
   return (
     <>
       <div className="mx-4">
@@ -8,38 +11,46 @@ const InstructorsComponent = () => {
           Meet the best{" "}
           <span className="text-[#f86454]"> Yoga Instructors </span>
         </h1>
-        <div className="grid md:grid-cols-2 grid-cols-1 mt-5">
-          <div className="flex flex-col items-center pb-2 md:w-[50%] md:mx-auto mb-10 md:mb-0 rounded-lg shadow bg-[#f1f1f1]">
-            <div className="bg-[#b4aaa7] w-full flex justify-center">
+        <div className="grid md:grid-cols-2 grid-cols-1 mt-5 gap-4">
+          <div className="flex flex-col items-center pb-4 md:w-1/2 md:mx-auto rounded shadow bg-white">
+            <div className="w-full flex justify-center">
               <img
                 src="/assets/sakina-vagh.png"
                 alt="yoga-teacher"
-                width="250px"
+                className="h-60 w-60 object-cover rounded-t"
               />
             </div>
-            <span className="text-[24px] mt-3">Sakina Vagh</span>
-            <button
-              className=" text-[#f86454] mb-3"
-              onClick={() => router.push("/instructors/sakina-vagh")}
-            >
-              View Profile
-            </button>
+            <div className="p-4 flex flex-col items-center">
+              <h2 className="text-xl font-bold text-gray-800 mb-2">
+                Sakina Vagh
+              </h2>
+              <button
+                className="text-[#f86454] bg-transparent border border-[#f86454] px-4 py-2 rounded-full font-medium transition duration-300 ease-in-out hover:bg-[#f86454] hover:text-white"
+                onClick={() => router.push("/instructors/sakina-vagh")}
+              >
+                View Profile
+              </button>
+            </div>
           </div>
-          <div className="flex flex-col items-center pb-2 md:w-[50%] md:mx-auto rounded-lg shadow bg-[#f1f1f1]">
-            <div className="bg-[#b4aaa7] w-full flex justify-center">
+          <div className="flex flex-col items-center pb-4 md:w-1/2 md:mx-auto rounded shadow bg-white">
+            <div className="w-full flex justify-center">
               <img
                 src="/assets/rathnavel-pandian.png"
                 alt="yoga-teacher"
-                width="250px"
+                className="h-60 w-60 object-cover rounded-t"
               />
             </div>
-            <span className="text-[24px] mt-3">Rathnavel Pandian</span>
-            <button
-              className="text-[#f86454] mb-3"
-              onClick={() => router.push("/instructors/rathnavel-pandian")}
-            >
-              View Profile
-            </button>
+            <div className="p-4 flex flex-col items-center">
+              <h2 className="text-xl font-bold text-gray-800 mb-2">
+                Rathnavel Pandian
+              </h2>
+              <button
+                className="text-[#f86454] bg-transparent border border-[#f86454] px-4 py-2 rounded-full font-medium transition duration-300 ease-in-out hover:bg-[#f86454] hover:text-white"
+                onClick={() => router.push("/instructors/rathnavel-pandian")}
+              >
+                View Profile
+              </button>
+            </div>
           </div>
         </div>
       </div>

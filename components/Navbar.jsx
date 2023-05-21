@@ -111,9 +111,9 @@ const Navbar = () => {
                   <div>FAQ</div>
                 </Link>
                 <Link href="/" className="md:my-3 my-1">
-                  <div>Blog</div>
+                  <div>Blogs</div>
                 </Link>
-                <Link href="/" className="md:my-3 my-1">
+                <Link href="/gallery" className="md:my-3 my-1">
                   <div>Gallery</div>
                 </Link>
                 <Link href="/contact-us" className="md:my-3 my-1">
