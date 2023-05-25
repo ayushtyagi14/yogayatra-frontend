@@ -49,7 +49,7 @@ const GetEvents = () => {
                   >
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img
-                        src={data.eventImg}
+                        src={data.eventImgUrl}
                         alt={data.eventName}
                         className="w-full h-64 object-cover object-center"
                       />
@@ -90,8 +90,8 @@ const GetEvents = () => {
                         <span className="font-poppins">{data.eventTime}</span>
                       </p>
                     </div>
-                    <div className="flex flex-row items-center w-[40%] mx-auto justify-between">
-                      <span className="px-2 py-1 rounded-lg shadow">
+                    <div className="flex flex-row items-center w-full justify-around mt-5">
+                      <span>
                         <EditEvent
                           eventId={data.eventId}
                           getAllEvents={getAllEvents}

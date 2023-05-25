@@ -5,9 +5,12 @@ import moment from "moment";
 
 const EditSession = ({ sessionId, getAllSessions }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState("");
+  const [loading2, setLoading2] = useState(false);
+  const [image, setImage] = useState(null);
+  const [editImage, setEditImage] = useState(null);
   const [sessionName, setSessionName] = useState("");
   const [sessionDescription, setSessionDescription] = useState("");
   const [sessionPlan1Fee, setSessionPlan1Fee] = useState("");
@@ -20,17 +23,52 @@ const EditSession = ({ sessionId, getAllSessions }) => {
   const [sessionStartTime, setSessionStartTime] = useState("");
   const [sessionEndTime, setSessionEndTime] = useState("");
 
-  // function handleChange(event) {
-  //   const file = event.target.files[0];
-  //   if (file && file.type.startsWith("image/")) {
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       const blob = dataURItoBlob(reader.result);
-  //       setImage(blob);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // }
+  function handleChange(event) {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setEditImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  const handleImageEdit = (event) => {
+    event.preventDefault();
+    setLoading2(true);
+
+    const formData = new FormData();
+    formData.append("myFile", dataURItoBlob(editImage));
+    formData.append("sessionId", sessionId);
+
+    var requestOptions = {
+      method: "POST",
+      body: formData,
+      redirect: "follow",
+    };
+
+    fetch(process.env.BACKEND + "admin/editSessionImg", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        const data = JSON.parse(result);
+        setLoading2(false);
+        if (data.resCode === 200) {
+          toast.success(`Session Image edited successfully!`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+          setShowModal2(false);
+          getAllEvents();
+        } else {
+          toast.error(`${data.message}`, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500,
+          });
+        }
+      })
+      .catch((error) => console.log("error", error));
+  };
 
   const getSingleSession = () => {
     var requestOptions = {
@@ -44,8 +82,8 @@ const EditSession = ({ sessionId, getAllSessions }) => {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result.session);
-        setImage(result.session.sessionImg);
+        console.log(result);
+        setImage(result.session.sessionImgUrl);
         setSessionName(result.session.sessionName);
         setSessionDescription(result.session.sessionDesc);
         setSessionPlan1Fee(result.session.sessionPlan1Fee);
@@ -85,10 +123,6 @@ const EditSession = ({ sessionId, getAllSessions }) => {
       sessionTime: sessionTime,
     };
 
-    // if (handleChange) {
-    //   payload.myFile = dataURItoBlob(image);
-    // }
-
     var requestOptions = {
       method: "PATCH",
       headers: {
@@ -102,50 +136,63 @@ const EditSession = ({ sessionId, getAllSessions }) => {
       process.env.BACKEND + "admin/editSession/" + sessionId,
       requestOptions
     )
-      .then((response) => response.text())
-      .then((result) => {
-        const data = JSON.parse(result);
+      .then((response) => {
+        response.text();
+        console.log(response.status);
         setLoading(false);
-        console.log(data);
-        if (data.resCode === 200) {
-          toast.success(`${data.message}`, {
+        if (response.status === 200) {
+          toast.success(`Session Edited Successfully`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
           });
           setShowModal(false);
+          setShowModal2(false);
           getAllSessions();
         } else {
-          toast.error(`${data.message}`, {
+          toast.error(`Some error occured`, {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
           });
         }
       })
+      .then((result) => {
+        const data = result;
+        console.log(data);
+      })
       .catch((error) => console.log("error", error));
   };
 
-  // function dataURItoBlob(dataURI) {
-  //   const byteString = Buffer(dataURI.split(",")[1]);
-  //   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-  //   const ab = new ArrayBuffer(byteString.length);
-  //   const ia = new Uint8Array(ab);
-  //   for (let i = 0; i < byteString.length; i++) {
-  //     ia[i] = byteString.charCodeAt(i);
-  //   }
-  //   return new Blob([ab], { type: mimeString });
-  // }
+  function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(",")[1]);
+    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+  }
 
   return (
     <>
-      {console.log(sessionPlan3Duration)}
-      <button
-        onClick={() => {
-          setShowModal(true), getSingleSession();
-        }}
-        className="cursor-pointer"
-      >
-        Edit
-      </button>
+      <div className="flex flex-row">
+        <button
+          onClick={() => {
+            setShowModal(true), getSingleSession();
+          }}
+          className="border px-3 py-1 shadow rounded-xl mx-2"
+        >
+          Edit
+        </button>
+        <button
+          className="border px-3 py-1 shadow rounded-xl mx-2"
+          onClick={() => {
+            setShowModal2(true);
+          }}
+        >
+          Change Image
+        </button>
+      </div>
       {showModal ? (
         <>
           <form
@@ -166,7 +213,7 @@ const EditSession = ({ sessionId, getAllSessions }) => {
                   </button>
                 </div>
 
-                {/* <div className="flex flex-col items-center flex-wrap mt-4">
+                <div className="flex flex-col items-center flex-wrap mt-4">
                   {image && (
                     <img
                       src={image}
@@ -174,20 +221,7 @@ const EditSession = ({ sessionId, getAllSessions }) => {
                       className="w-full max-h-48 object-cover rounded-md flex-shrink-0"
                     />
                   )}
-                  <div className="flex flex-row items-center mt-4 w-full">
-                    <label htmlFor="image" className="font-medium">
-                      Image:
-                    </label>
-                    <input
-                      type="file"
-                      id="image"
-                      name="image"
-                      accept="image/*"
-                      onChange={handleChange}
-                      className="py-1 px-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2 w-full"
-                    />
-                  </div>
-                </div> */}
+                </div>
 
                 <div className="flex flex-col items-center mt-4 w-full">
                   <label htmlFor="session-name">Name:</label>
@@ -415,6 +449,64 @@ const EditSession = ({ sessionId, getAllSessions }) => {
               </div>
             </div>
           </form>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+
+      {showModal2 ? (
+        <>
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-scroll fixed inset-0 z-50 outline-none focus:outline-none mt-5 text-[14px]">
+            <div className="relative w-max my-6 mx-auto mt-[5rem]">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none pb-5 px-10 overflow-y-auto">
+                <div className="flex flex-row items-center justify-between mt-5 mr-5">
+                  <h1 className="text-center uppercase font-poppins text-[20px]">
+                    Add a new Image
+                  </h1>
+                  <button
+                    className="text-[#B4AAA7] font-bold text-2xl ml-20"
+                    onClick={() => setShowModal2(false)}
+                  >
+                    x
+                  </button>
+                </div>
+
+                <div className="flex flex-col items-center flex-wrap my-5">
+                  {editImage && (
+                    <img
+                      src={editImage}
+                      alt="Selected Image"
+                      className="w-full max-h-48 object-cover rounded-md flex-shrink-0"
+                    />
+                  )}
+                  <div className="flex flex-col items-center mt-4 w-full">
+                    <label htmlFor="image" className="font-medium">
+                      New Image:
+                    </label>
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/*"
+                      onChange={handleChange}
+                      className="py-1 px-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ml-2 w-full"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button
+                  className=" py-2 px-8 rounded-lg font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#B4AAA7] text-white hover:bg-[#d6cac7]"
+                  onClick={handleImageEdit}
+                >
+                  {loading2 ? (
+                    <span>loading ...</span>
+                  ) : (
+                    <span>Edit Image</span>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}

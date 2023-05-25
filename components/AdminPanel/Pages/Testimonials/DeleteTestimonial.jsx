@@ -2,12 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const DeleteSession = ({ sessionId, getAllSessions }) => {
+const DeleteTestimonial = ({ testimonialId, getAllTestimonials }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleDelete = () => {
     const payload = {
-      sessionId: sessionId,
+      testimonialId: testimonialId,
     };
 
     var requestOptions = {
@@ -19,7 +19,7 @@ const DeleteSession = ({ sessionId, getAllSessions }) => {
       redirect: "follow",
     };
 
-    fetch(process.env.BACKEND + "admin/deleteSession", requestOptions)
+    fetch(process.env.BACKEND + "admin/deleteTestimonial", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         const data = result;
@@ -29,7 +29,7 @@ const DeleteSession = ({ sessionId, getAllSessions }) => {
             position: toast.POSITION.TOP_CENTER,
             autoClose: 1500,
           });
-          getAllSessions();
+          getAllTestimonials();
           setShowModal(false);
         } else {
           toast.error(`${data.message}`, {
@@ -62,7 +62,7 @@ const DeleteSession = ({ sessionId, getAllSessions }) => {
                 </div>
 
                 <div className="flex flex-col text-[18px] mt-5 font-poppins">
-                  <div>Are you sure you want to delete this session ?</div>
+                  <div>Are you sure you want to delete this testimonial ?</div>
                   <div className="flex flex-row items-center justify-evenly w-full mt-4">
                     <button
                       className="px-4 py-1 rounded-lg shadow hover:bg-[#f86454] hover:text-white"
@@ -88,4 +88,4 @@ const DeleteSession = ({ sessionId, getAllSessions }) => {
   );
 };
 
-export default DeleteSession;
+export default DeleteTestimonial;

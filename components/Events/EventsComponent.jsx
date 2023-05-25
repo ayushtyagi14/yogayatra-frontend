@@ -14,7 +14,7 @@ const EventsComponent = ({ props }) => {
           >
             <div className="relative overflow-hidden rounded-t-lg">
               <img
-                src={data.eventImg}
+                src={data.eventImgUrl}
                 alt={data.eventName}
                 className="w-full h-64 object-cover object-center"
               />

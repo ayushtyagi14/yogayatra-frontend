@@ -48,7 +48,7 @@ const GetSession = () => {
                     className="flex flex-col md:w-full md:mx-5 mt-5 md:px-10 py-3 shadow"
                   >
                     <img
-                      src={data.sessionImg}
+                      src={data.sessionImgUrl}
                       alt={data.sessionName}
                       className="md:w-[50%] w-[80%] rounded-xl h-48 object-cover object-center mx-auto"
                     />
@@ -84,8 +84,8 @@ const GetSession = () => {
                         For {data.sessionPlan3Duration} Months
                       </p>
                     </div>
-                    <div className="flex flex-row items-center w-[40%] mx-auto justify-between mt-5">
-                      <span className="px-2 py-1 rounded-lg shadow">
+                    <div className="flex flex-row items-center w-full justify-around mt-5">
+                      <span>
                         <EditSession
                           sessionId={data.sessionId}
                           getAllSessions={getAllSessions}

@@ -58,7 +58,7 @@ const Testimonial = () => {
                 >
                   <div className="flex justify-center md:justify-start">
                     <Image
-                      src={item.testimonialImg}
+                      src={item.testimonialImgUrl}
                       alt={item.testimonialPersonName}
                       className="md:ml-20 p-5 h-[300px] object-cover"
                       width={250}

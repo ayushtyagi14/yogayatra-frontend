@@ -8,7 +8,7 @@ const SingleSession = ({ session }) => {
         <>
             <Layout title={`${session.sessionName} | Yogayatra`}>
                 <Hero name={session.sessionName} isClass={true} />
-                <SessionComponent props={session} />
+                <SessionComponent session={session} />
             </Layout>
         </>
     )

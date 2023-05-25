@@ -14,7 +14,7 @@ const TestimonialsComponent = ({ props }) => {
             <div className="bg-white text-black h-max min-h-[250px] grid md:grid-cols-2 grid-cols-1 rounded-lg items-center w-[90%] mx-auto mt-12 md:pb-0 pb-5">
               <div className="flex justify-center md:justify-start">
                 <Image
-                  src={item.testimonialImg}
+                  src={item.testimonialImgUrl}
                   alt={item.testimonialPersonName}
                   className="md:ml-20 p-5 h-[300px] object-cover"
                   width={250}

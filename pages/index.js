@@ -8,7 +8,7 @@ import Testimonial from '../components/Homepage/Testimonial';
 import Founders from '../components/Homepage/Founders';
 
 
-export default function Home() {
+export default function Home({ instructors }) {
 
   return (
     <Layout
@@ -19,9 +19,29 @@ export default function Home() {
       <WhyYoga />
       <Training />
       <Class />
-      <Team />
+      <Team props={instructors} />
       <Founders />
       <Testimonial />
     </Layout>
   )
+}
+
+export const getServerSideProps = async () => {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  const response = await fetch(
+    process.env.BACKEND + "admin/getAllInstructors",
+    requestOptions
+  );
+
+  const data = await response.json();
+
+  return {
+    props: {
+      instructors: data.instructors,
+    },
+  };
 }

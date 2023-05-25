@@ -3,7 +3,8 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: true,
   images: {
-    unoptimized: true
+    unoptimized: true,
+    domains: ['res.cloudinary.com'],
   },
   env: {
     BACKEND: "https://yogayatra.in/api/",

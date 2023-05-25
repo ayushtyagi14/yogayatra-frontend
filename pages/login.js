@@ -10,7 +10,7 @@ const Login = () => {
     const router = useRouter()
 
     const [loading, setLoading] = useState(false);
-    const [isAuthenticated, setIsAuthentcated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     const [formData, setFormData] = useState({
         email: '',
@@ -43,10 +43,11 @@ const Login = () => {
             .then(response => response.text(),)
             .then(result => {
                 const data = JSON.parse(result);
+                console.log("login:", data.userId)
                 setLoading(false);
                 if (data.resCode === 200) {
                     localStorage.setItem("authenticated", true)
-                    localStorage.setItem("userDetails", data)
+                    localStorage.setItem("userId", data.userId)
                     toast.success(
                         "Logged In Successfully!",
                         {
@@ -70,7 +71,7 @@ const Login = () => {
     };
 
     useEffect(() => {
-        setIsAuthentcated(localStorage.getItem('authenticated'))
+        setIsAuthenticated(localStorage.getItem('authenticated'))
     }, [])
 
     if (isAuthenticated) {

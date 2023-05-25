@@ -55,23 +55,27 @@ const MakeEvent = ({ getAllEvents }) => {
       };
 
       fetch(process.env.BACKEND + "admin/makeEvent", requestOptions)
-        .then((response) => response.text())
-        .then((result) => {
-          const data = JSON.parse(result);
+        .then((response) => {
+          response.text();
+          console.log(response.status);
           setLoading(false);
-          if (data.resCode === 200) {
-            toast.success(`${data.message}`, {
+          if (response.status === 200) {
+            toast.success(`New Event Added Successfully`, {
               position: toast.POSITION.TOP_CENTER,
               autoClose: 1500,
             });
-            getAllEvents();
             setShowModal(false);
+            getAllEvents();
           } else {
-            toast.error(`${data.message}`, {
+            toast.error(`Some error occured`, {
               position: toast.POSITION.TOP_CENTER,
               autoClose: 1500,
             });
           }
+        })
+        .then((result) => {
+          const data = result;
+          console.log(data);
         })
         .catch((error) => console.log("error", error));
     }

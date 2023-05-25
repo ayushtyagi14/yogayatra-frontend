@@ -1,7 +1,7 @@
 import React from "react";
 
 const EventComponent = ({ props }) => {
-  const formattedSessionDesc = props.eventDesc.replace(/\n/g, "<br>");
+  const formattedEventDesc = props.eventDesc.replace(/\n/g, "<br>");
 
   return (
     <>
@@ -14,7 +14,7 @@ const EventComponent = ({ props }) => {
               </h1>
               <p
                 className="font-poppins md:w-[80%] w-[95%] mx-auto md:mx-0 md:text-[16px] text-[14px] mt-2 text-center md:text-left"
-                dangerouslySetInnerHTML={{ __html: formattedSessionDesc }}
+                dangerouslySetInnerHTML={{ __html: formattedEventDesc }}
               />
             </div>
             <div className="my-3 md:w-[40%]">

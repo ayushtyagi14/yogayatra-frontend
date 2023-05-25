@@ -15,7 +15,7 @@ const SessionsComponent = ({ props }) => {
           >
             <div className="relative overflow-hidden rounded-t-lg">
               <img
-                src={data.sessionImg}
+                src={data.sessionImgUrl}
                 alt={data.sessionName}
                 className="w-full h-64 object-cover object-center"
               />

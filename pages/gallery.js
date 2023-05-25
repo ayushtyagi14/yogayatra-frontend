@@ -1,30 +1,34 @@
 import Modal from "react-modal";
-import { useState } from "react";
-import MyHead from '../components/MyHead'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import { useState, useEffect } from "react";
+import MyHead from "../components/MyHead";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 Modal.setAppElement("#__next");
 
 const GalleryPage = () => {
     const [selectedMedia, setSelectedMedia] = useState(null);
+    const [galleryPhotos, setGalleryPhotos] = useState([]);
 
-    const mediaList = [
-        { type: "video", src: "/assets/galleryVid1.mp4" },
-        { type: "video", src: "/assets/galleryVid2.mp4" },
-        { type: "image", src: "/assets/gallery1.jpg" },
-        { type: "image", src: "/assets/gallery2.jpg" },
-        { type: "image", src: "/assets/gallery3.jpg" },
-        { type: "image", src: "/assets/gallery4.jpg" },
-        { type: "image", src: "/assets/gallery5.jpg" },
-        { type: "image", src: "/assets/gallery6.jpg" },
-        { type: "image", src: "/assets/gallery7.jpg" },
-        { type: "image", src: "/assets/gallery8.jpg" },
-        { type: "image", src: "/assets/gallery9.jpg" },
-        { type: "image", src: "/assets/gallery10.jpg" },
-        { type: "image", src: "/assets/gallery11.jpg" },
-        { type: "image", src: "/assets/gallery12.jpg" },
-    ];
+    useEffect(() => {
+        getGalleryPhotos();
+    }, []);
+
+    const getGalleryPhotos = () => {
+        var requestOptions = {
+            method: "GET",
+            redirect: "follow",
+        };
+
+        fetch(process.env.BACKEND + "admin/getAllGalleryPhotos", requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+                const data = JSON.parse(result);
+                console.log(data.galleryPhotos); // Log the response to verify its structure
+                setGalleryPhotos(data.galleryPhotos);
+            })
+            .catch((error) => console.log("error", error));
+    };
 
     const openModal = (media) => {
         setSelectedMedia(media);
@@ -34,16 +38,30 @@ const GalleryPage = () => {
         setSelectedMedia(null);
     };
 
+    const mediaList = [
+        { type: "video", src: "/assets/galleryVid1.mp4" },
+        { type: "video", src: "/assets/galleryVid2.mp4" },
+    ];
+
     return (
         <>
-            <MyHead title='Gallery | Yogayatra' />
+            <MyHead title="Gallery | Yogayatra" />
             <div className="w-full bg-[#B4AAA7] shadow z-[999]">
                 <Navbar />
             </div>
             <div className="flex flex-wrap justify-center items-center mt-10">
-                {mediaList.map((media, index) => (
+                {galleryPhotos.map((media, index) => (
                     <div
                         key={index}
+                        className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 cursor-pointer"
+                        onClick={() => openModal(media)}
+                    >
+                        <img src={media.photoImgUrl} alt="Image" className="w-full h-auto" />
+                    </div>
+                ))}
+                {mediaList.map((media, index) => (
+                    <div
+                        key={index + galleryPhotos.length}
                         className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 cursor-pointer"
                         onClick={() => openModal(media)}
                     >
@@ -79,12 +97,12 @@ const GalleryPage = () => {
                     Close
                 </button>
                 {selectedMedia && selectedMedia.type === "video" ? (
-                    <video autoPlay muted loop playsInline className="w-auto h-screen">
+                    <video autoPlay muted loop playsInline controls className="w-auto h-screen">
                         <source src={selectedMedia.src} type="video/mp4" />
                     </video>
                 ) : (
                     <img
-                        src={selectedMedia && selectedMedia.src}
+                        src={selectedMedia && selectedMedia.photoImgUrl}
                         alt="Selected Image"
                         className="w-auto justify-center h-screen"
                     />
@@ -96,4 +114,4 @@ const GalleryPage = () => {
     );
 };
 
-export default GalleryPage
+export default GalleryPage;
