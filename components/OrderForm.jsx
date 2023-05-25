@@ -235,7 +235,7 @@ const OrderForm = ({ bookingDetails }) => {
                     <div className="flex md:flex-row flex-col md:items-center items-start justify-between">
                       <div className="flex md:flex-row flex-col items-center mt-4 w-full">
                         <label htmlFor="motherName" className="mr-2">
-                          Mother's Name:
+                          Mother&apos;s Name:
                         </label>
                         <input
                           type="text"
@@ -248,7 +248,7 @@ const OrderForm = ({ bookingDetails }) => {
 
                       <div className="flex md:flex-row flex-col items-center mt-4 w-full">
                         <label htmlFor="fatherName" className="mr-2">
-                          Father's Name:
+                          Father&apos;s Name:
                         </label>
                         <input
                           type="text"
@@ -263,7 +263,7 @@ const OrderForm = ({ bookingDetails }) => {
                     <div className="flex md:flex-row flex-col md:items-center items-start justify-between">
                       <div className="flex md:flex-row flex-col items-center mt-4 w-full">
                         <label htmlFor="motherNumber" className="mr-2">
-                          Mother's Mobile Number:
+                          Mother&apos;s Mobile Number:
                         </label>
                         <input
                           type="number"
@@ -277,7 +277,7 @@ const OrderForm = ({ bookingDetails }) => {
 
                       <div className="flex md:flex-row flex-col items-center mt-4 w-full">
                         <label htmlFor="fatherNumber" className="mr-2">
-                          Father's Mobile Number:
+                          Father&apos;s Mobile Number:
                         </label>
                         <input
                           type="number"
@@ -293,7 +293,7 @@ const OrderForm = ({ bookingDetails }) => {
                     <div className="flex md:flex-row flex-col md:items-center items-start justify-between">
                       <div className="flex md:flex-row flex-col items-center mt-4 w-full">
                         <label htmlFor="guardianName" className="mr-2">
-                          Guardian's Name:
+                          Guardian&apos;s Name:
                         </label>
                         <input
                           type="text"
@@ -306,7 +306,7 @@ const OrderForm = ({ bookingDetails }) => {
 
                       <div className="flex md:flex-row flex-col items-center mt-4 w-full">
                         <label htmlFor="guardianNumber" className="mr-2">
-                          Guardian's Mobile Number:
+                          Guardian&apos;s Mobile Number:
                         </label>
                         <input
                           type="number"
