@@ -15,6 +15,8 @@ const nextConfig = {
     delete defaultPathMap['/session/[id]']
     delete defaultPathMap['/sessions']
     delete defaultPathMap['/testimonials']
+    delete defaultPathMap['/instructors']
+    delete defaultPathMap['/']
     return defaultPathMap
   },
 };
