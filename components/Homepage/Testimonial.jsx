@@ -31,7 +31,7 @@ const Testimonial = () => {
 
   return (
     <>
-      <div className="mx-10 my-40">
+      <div className="mx-10 my-20">
         <h1 className="md:text-[40px] text-[30px] text-center leading-none">
           We Asked People What They Like <br /> About Our{" "}
           <span className="text-[#f86454]">Yoga and Fitness</span>

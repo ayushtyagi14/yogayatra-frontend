@@ -21,12 +21,12 @@ const Dashboard = () => {
     return (
         <>
             <MyHead title='Your Dashboard | Yogayatra' />
-            <div className="w-full bg-[#B4AAA7] shadow z-[999]">
+            <div className="w-full bg-[#353746] shadow z-[999]">
                 <Navbar />
             </div>
             <div className='flex w-[97%] justify-end mt-5'>
                 <button
-                    className='md:text-[24px] text-[20px] bg-[#B4AAA7] border border-[#B4AAA7] hover:bg-[#ececec] px-5 py-1 rounded-xl text-white hover:text-[#B4AAA7] my-4 md:my-0'
+                    className='md:text-[24px] text-[20px] bg-[#353746] border border-[#353746] hover:bg-[#ececec] px-5 py-1 rounded-xl text-white hover:text-[#353746] my-4 md:my-0'
                     onClick={handleLogout}
                 >
                     Logout

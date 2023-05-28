@@ -46,7 +46,7 @@ const GalleryPage = () => {
     return (
         <>
             <MyHead title="Gallery | Yogayatra" />
-            <div className="w-full bg-[#B4AAA7] shadow z-[999]">
+            <div className="w-full bg-[#353746] shadow z-[999]">
                 <Navbar />
             </div>
             <div className="flex flex-wrap justify-center items-center mt-10">

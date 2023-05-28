@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#b4aaa7] py-12">
+    <footer className="bg-[#353746] py-12">
       <div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="md:w-1/4 flex flex-col items-center md:items-start">
@@ -56,18 +56,18 @@ const Footer = () => {
             <ul>
               <li>
                 <div
-                  href="mailto:info@yogayatra.com"
+                  href="mailto:yogayatra.in@gmail.com"
                   className="text-white hover:text-white cursor-pointer transition duration-150 ease-in-out"
                 >
-                  info@yogayatra.com
+                  yogayatra.in@gmail.com
                 </div>
               </li>
               <li className="mt-3">
                 <div
-                  href="tel:+1234567890"
+                  href="tel:+919629333344"
                   className="text-white hover:text-white cursor-pointer transition duration-150 ease-in-out"
                 >
-                  +1 (234) 567-890
+                  +91 9629333344
                 </div>
               </li>
             </ul>

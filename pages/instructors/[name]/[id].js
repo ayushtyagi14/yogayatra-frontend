@@ -40,7 +40,7 @@ const InstructorProfile = () => {
     return (
         <>
             <MyHead title="Sakina Vagh | Yogayatra" />
-            <div className="w-full bg-[#B4AAA7] shadow z-[999]">
+            <div className="w-full bg-[#353746] shadow z-[999]">
                 <Navbar />
             </div>
             <div className="mx-10 mt-10 px-4 md:px-8 lg:px-16">

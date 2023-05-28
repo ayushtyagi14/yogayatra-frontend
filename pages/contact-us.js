@@ -7,7 +7,7 @@ const ContactUs = () => {
     return (
         <>
             <MyHead title='Contact Us | Yogayatra' />
-            <div className="w-full bg-[#B4AAA7] shadow z-[999]">
+            <div className="w-full bg-[#353746] shadow z-[999]">
                 <Navbar />
             </div>
             <div className='flex flex-col items-center my-20'>

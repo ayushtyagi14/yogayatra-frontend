@@ -20,7 +20,7 @@ const Sidebar = ({ onPageChange }) => {
           className={`${
             isSidebarOpen ? "md:w-[12rem] w-[20rem] block" : "w-0 hidden"
           }
-          fixed left-0 top-0 flex flex-col items-center justify-between h-screen bg-[#B4AAA7] transition-all duration-500 ease-in-out`}
+          fixed left-0 top-0 flex flex-col items-center justify-between h-screen bg-[#353746] transition-all duration-500 ease-in-out`}
         >
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}

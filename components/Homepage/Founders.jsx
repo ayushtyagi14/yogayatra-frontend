@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Founders = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-10 my-32">
+    <div className="flex flex-col items-center justify-center py-10 my-20">
       <div className="max-w-[80%] mx-auto px-4">
         <motion.section
           variants={staggerContainer}

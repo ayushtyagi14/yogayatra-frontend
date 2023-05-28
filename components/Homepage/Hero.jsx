@@ -24,7 +24,7 @@ const Hero = () => {
             <p> Welcome To YogaYatra </p>
           </div>
           <button
-            className="rounded-lg py-2 px-6 text-white bg-[#B4AAA7]"
+            className="rounded-lg py-2 px-6 text-white bg-[#353746]"
             onClick={() => router.push("/sessions")}
           >
             Book a Class

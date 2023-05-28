@@ -12,7 +12,7 @@ const Team = ({ props }) => {
   };
 
   return (
-    <div className="mx-10 mt-40">
+    <div className="mx-10 mt-20">
       <h1 className="md:text-[40px] text-[30px] text-center">
         Meet The <span className="text-[#f86454]">Experts</span>
       </h1>

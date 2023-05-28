@@ -6,6 +6,8 @@ import Class from '../components/Homepage/Class';
 import Team from '../components/Homepage/Team';
 import Testimonial from '../components/Homepage/Testimonial';
 import Founders from '../components/Homepage/Founders';
+import LookInside from '../components/Homepage/LookInside';
+import WhatsApp from '../components/WhatsApp';
 
 
 export default function Home({ instructors }) {
@@ -17,11 +19,13 @@ export default function Home({ instructors }) {
     >
       <Hero />
       <WhyYoga />
+      <WhatsApp />
       <Training />
       <Class />
       <Team props={instructors} />
       <Founders />
       <Testimonial />
+      <LookInside />
     </Layout>
   )
 }

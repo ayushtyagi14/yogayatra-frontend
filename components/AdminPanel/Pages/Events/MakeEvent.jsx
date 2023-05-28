@@ -117,7 +117,7 @@ const MakeEvent = ({ getAllEvents }) => {
                     Make a new event
                   </h1>
                   <button
-                    className="text-[#B4AAA7] font-bold text-2xl"
+                    className="text-[#353746] font-bold text-2xl"
                     onClick={() => setShowModal(false)}
                   >
                     x
@@ -258,7 +258,7 @@ const MakeEvent = ({ getAllEvents }) => {
 
                 <div className="flex flex-row items-center justify-center mt-4 w-full">
                   <button
-                    className=" py-2 px-8 rounded-lg font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#B4AAA7] text-white hover:bg-[#d6cac7]"
+                    className=" py-2 px-8 rounded-lg font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#353746] text-white hover:bg-[#d6cac7]"
                     type="submit"
                   >
                     {loading ? (

@@ -54,7 +54,7 @@ const DeleteInstructor = ({ instructorId, getAllInstructors }) => {
                 <div className="flex flex-row items-center justify-between mt-5 mr-5">
                   <h1 className="text-center uppercase font-poppins text-[20px]"></h1>
                   <button
-                    className="text-[#B4AAA7] font-bold text-2xl font-poppins"
+                    className="text-[#353746] font-bold text-2xl font-poppins"
                     onClick={() => setShowModal(false)}
                   >
                     x
@@ -71,7 +71,7 @@ const DeleteInstructor = ({ instructorId, getAllInstructors }) => {
                       Yes
                     </button>
                     <button
-                      className="px-4 py-1 rounded-lg shadow hover:bg-[#B4AAA7] hover:text-white"
+                      className="px-4 py-1 rounded-lg shadow hover:bg-[#353746] hover:text-white"
                       onClick={() => setShowModal(false)}
                     >
                       No

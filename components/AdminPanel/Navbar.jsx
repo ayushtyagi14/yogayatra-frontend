@@ -31,7 +31,7 @@ const Navbar = () => {
         </Link>
 
         <button
-          className="flex flex-row items-center bg-[#B4AAA7] text-white rounded-xl py-1.5 px-4 w-max hover:bg-[#d6cac7]"
+          className="flex flex-row items-center bg-[#353746] text-white rounded-xl py-1.5 px-4 w-max hover:bg-[#d6cac7]"
           onClick={() => {
             router.push("/admin-login"), localStorage.removeItem("isAdmin");
           }}

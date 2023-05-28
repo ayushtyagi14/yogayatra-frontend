@@ -16,8 +16,8 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`grid grid-cols-3 px-4 md:px-10 pt-3 pb-2 md:pb-2 text-white ${
-          dropdown ? "bg-[#B4AAA7]" : "bg-none"
+        className={`grid grid-cols-3 px-4 md:px-10 pt-3 pb-3 text-white ${
+          dropdown ? "bg-[#353746]" : "bg-none"
         }`}
       >
         <div className="flex flex-row items-center">
@@ -51,10 +51,10 @@ const Navbar = () => {
             <img
               src="/assets/logo.png"
               alt="logo"
-              width="50px"
+              width="44px"
               className="rounded-full"
             />
-            <h1 className="ml-4 text-[22px]">YogaYatra</h1>
+            <h1 className="ml-4 text-[18px]">YogaYatra</h1>
           </div>
         </Link>
 
@@ -88,7 +88,7 @@ const Navbar = () => {
             }}
           >
             <>
-              <div className="h-max flex flex-col md:px-10 px-5 text-white bg-[#B4AAA7]">
+              <div className="h-max flex flex-col md:px-10 px-5 text-white bg-[#353746]">
                 <Link href="/about" className="md:my-3 my-1 block md:hidden">
                   <div>About Us</div>
                 </Link>

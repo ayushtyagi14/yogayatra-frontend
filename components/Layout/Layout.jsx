@@ -25,7 +25,7 @@ const Layout = ({ children, title, description }) => {
     <>
       <MyHead title={title} description={description} />
       {colorChange ? (
-        <div className="fixed top-0 w-full bg-[#B4AAA7] shadow z-[999]">
+        <div className="fixed top-0 w-full bg-[#353746] shadow z-[999]">
           <Navbar />
         </div>
       ) : (

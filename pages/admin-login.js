@@ -87,7 +87,7 @@ const AdminLogin = () => {
     return (
         <>
             <MyHead title='Admin Login | Yogayatra' />
-            <div className="w-full bg-[#B4AAA7] shadow z-[999]">
+            <div className="w-full bg-[#353746] shadow z-[999]">
                 <Navbar />
             </div>
             <div className="text-center flex flex-col items-center font-poppins bg-[#fffaf4] w-full py-16">
@@ -148,7 +148,7 @@ const AdminLogin = () => {
                         ) : (
                             <button
                                 type="submit"
-                                className="py-1 px-7 text-white font-bold bg-[#b4aaa7] border rounded hover:text-[#b4aaa7] hover:bg-white"
+                                className="py-1 px-7 text-white font-bold bg-[#353746] border rounded hover:text-[#353746] hover:bg-white"
                             >
                                 <span>LogIn</span>
                             </button>

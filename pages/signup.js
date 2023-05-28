@@ -126,7 +126,7 @@ const Signup = () => {
     return (
         <>
             <MyHead title='Signup | Yogayatra' />
-            <div className="w-full bg-[#B4AAA7] shadow z-[999]">
+            <div className="w-full bg-[#353746] shadow z-[999]">
                 <Navbar />
             </div>
 
@@ -221,7 +221,7 @@ const Signup = () => {
                             ) : (
                                 <button
                                     type="submit"
-                                    className="py-2 px-8 text-white font-bold bg-[#b4aaa7] border rounded hover:text-[#b4aaa7] hover:bg-white"
+                                    className="py-2 px-8 text-white font-bold bg-[#353746] border rounded hover:text-[#353746] hover:bg-white"
                                 >
                                     Sign up
                                 </button>

@@ -38,7 +38,7 @@ const Class = () => {
               designed for each levels.
             </p>
             <button
-              className="border border-[#b4aaa7] bg-[#b4aaa7] text-white px-5 py-1 rounded-xl mt-3"
+              className="border border-[#353746] bg-[#353746] text-white px-5 py-1 rounded-xl mt-3"
               onClick={() => router.push("/levels/beginner-level")}
             >
               Learn More
@@ -55,7 +55,7 @@ const Class = () => {
               designed for each levels.
             </p>
             <button
-              className="border border-[#b4aaa7] bg-[#b4aaa7] text-white px-5 py-1 rounded-xl mt-3"
+              className="border border-[#353746] bg-[#353746] text-white px-5 py-1 rounded-xl mt-3"
               onClick={() => router.push("/levels/intermediate-level")}
             >
               Learn More
@@ -72,7 +72,7 @@ const Class = () => {
               designed for each levels.
             </p>
             <button
-              className="border border-[#b4aaa7] bg-[#b4aaa7] text-white px-5 py-1 rounded-xl mt-3"
+              className="border border-[#353746] bg-[#353746] text-white px-5 py-1 rounded-xl mt-3"
               onClick={() => router.push("/levels/advanced-level")}
             >
               Learn More

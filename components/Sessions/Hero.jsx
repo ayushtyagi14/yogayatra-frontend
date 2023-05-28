@@ -17,7 +17,7 @@ const Hero = ({ name, isClass }) => {
           {name}
         </h1>
         {isClass && (
-          <button className="rounded-lg py-2 px-6 text-white bg-[#B4AAA7] md:mt-0 mt-4">
+          <button className="rounded-lg py-2 px-6 text-white bg-[#353746] md:mt-0 mt-4">
             Book This Class
           </button>
         )}
