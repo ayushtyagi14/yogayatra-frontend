@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { MdClose } from "react-icons/md";
 
 const WhatsApp = () => {
-  const phoneNumber = "+919629333344"; // Replace with your desired phone number
+  const phoneNumber = "+917845283933"; // Replace with your desired phone number
   const encodedMessage = encodeURIComponent("Hello! I have a question."); // Replace with your predefined message
 
   const [showTooltip, setShowTooltip] = useState(true);
