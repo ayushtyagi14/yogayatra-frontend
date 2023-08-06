@@ -24,13 +24,13 @@ const Navbar = () => {
           <div className="cursor-pointer">
             {!dropdown && (
               <img
-                src="https://img.icons8.com/ios-glyphs/26/ffffff/null/menu-rounded.png"
+                src="/assets/menu.png"
                 onClick={() => setDropdown(true)}
               />
             )}
             {dropdown && (
               <img
-                src="https://img.icons8.com/material-outlined/26/ffffff/null/multiply--v1.png"
+                src="/assets/close.png"
                 onClick={() => setDropdown(false)}
               />
             )}
